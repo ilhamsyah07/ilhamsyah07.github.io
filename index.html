@@ -3,109 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ardi Sandiaga | Network Engineer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Portofolio | Nama Anda - Network Engineer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #050505;
-            overflow-x: hidden;
+        :root {
+            --primary-color: #0d6efd;
+            --dark-bg: #121212;
+            --light-bg: #f8f9fa;
         }
-        .outline-text {
-            color: transparent;
-            -webkit-text-stroke: 1px rgba(255,255,255,0.4);
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-        .glass-card:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-5px);
-        }
-        [x-cloak] { display: none !important; }
+        body { font-family: 'Inter', sans-serif; color: #333; line-height: 1.6; }
+        .hero { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1558494949-ef010cbdcc4b?q=80&w=2000') no-repeat center center/cover; color: white; padding: 120px 0; }
+        .section-title { position: relative; padding-bottom: 15px; margin-bottom: 40px; font-weight: 700; }
+        .section-title::after { content: ''; position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: 60px; height: 3px; background: var(--primary-color); }
+        .skill-badge { background: #e9ecef; border-left: 4px solid var(--primary-color); padding: 10px 15px; margin: 5px; display: inline-block; font-weight: 600; font-size: 0.9rem; }
+        .project-card { border: none; border-radius: 10px; transition: 0.3s; background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .project-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .timeline-item { border-left: 2px solid var(--primary-color); padding-left: 20px; position: relative; margin-bottom: 30px; }
+        .timeline-item::before { content: ''; position: absolute; left: -9px; top: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--primary-color); }
+        footer { background: #1a1a1a; color: white; padding: 40px 0; }
     </style>
 </head>
-<body class="text-white selection:bg-white selection:text-black">
+<body>
 
-    <nav class="flex justify-between items-center px-6 md:px-12 py-8 max-w-7xl mx-auto">
-        <div class="font-extrabold text-xl tracking-tighter uppercase italic">ARDI SANDIAGA</div>
-        <div class="hidden lg:flex gap-8 text-[10px] font-bold uppercase tracking-[0.2em] opacity-50">
-            <a href="#" class="hover:opacity-100 transition-opacity">Home</a>
-            <a href="#" class="hover:opacity-100 transition-opacity">About</a>
-            <a href="#" class="hover:opacity-100 transition-opacity">Experience</a>
-            <a href="#" class="hover:opacity-100 transition-opacity">Projects</a>
-            <a href="#" class="hover:opacity-100 transition-opacity">Skills</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">NET-PORTFOLIO</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#about">Tentang</a></li>
+                <li class="nav-item"><a class="nav-link" href="#skills">Skill</a></li>
+                <li class="nav-item"><a class="nav-link" href="#experience">Pengalaman</a></li>
+                <li class="nav-item"><a class="nav-link" href="#projects">Project</a></li>
+            </ul>
         </div>
-        <div class="flex items-center gap-5">
-            <button class="w-10 h-10 flex items-center justify-center border border-white/10 rounded-full hover:bg-white/5 transition">
-                <span class="text-sm">☀️</span>
-            </button>
-            <a href="#" class="bg-white text-black px-7 py-2.5 rounded-full font-extrabold text-[11px] uppercase tracking-wider hover:bg-neutral-200 transition">Contact</a>
+    </div>
+</nav>
+
+<header class="hero text-center">
+    <div class="container">
+        <h1 class="display-3 fw-bold mb-3 text-uppercase">Nama Anda</h1>
+        <p class="lead mb-4 fs-3">Network Engineer & Infrastructure Specialist</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="#projects" class="btn btn-primary btn-lg px-4">Lihat Project</a>
+            <a href="mailto:email@anda.com" class="btn btn-outline-light btn-lg px-4">Hubungi Saya</a>
         </div>
-    </nav>
+    </div>
+</header>
 
-    <main class="max-w-7xl mx-auto px-6 pt-16 pb-24 text-center flex flex-col items-center" 
-          x-data="{ show: false }" x-init="setTimeout(() => show = true, 100)">
-        
-        <div x-show="show" x-transition.duration.800ms
-             class="inline-block bg-white/5 border border-white/10 px-5 py-1.5 rounded-full text-[10px] uppercase tracking-[0.3em] font-semibold text-white/60 mb-10">
-            Based in Jonggol, West Java
-        </div>
-        
-        <div x-show="show" x-transition.enter.duration.1000ms.delay.200ms>
-            <h1 class="text-6xl md:text-[120px] font-black leading-[0.85] uppercase tracking-tighter mb-4">
-                NETWORK <br> 
-                <span class="outline-text">ENGINEER</span>
-            </h1>
-        </div>
-
-        <p x-show="show" x-transition.enter.duration.1000ms.delay.400ms
-           class="mt-8 max-w-xl text-md md:text-lg text-white/50 font-medium leading-relaxed">
-            Membangun jaringan sekolah dan UKM yang <span class="text-white/90">aman, stabil,</span> dan mudah dikelola dengan Cisco dan MikroTik.
-        </p>
-
-        <div x-show="show" x-transition.enter.duration.1000ms.delay.600ms
-             class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-16 w-full max-w-3xl">
-            
-            <div class="glass-card p-10 rounded-[32px]">
-                <div class="text-5xl font-extrabold tracking-tighter">50+</div>
-                <div class="text-[10px] uppercase tracking-[0.2em] font-bold opacity-30 mt-3">Siswa Terlatih</div>
-            </div>
-            
-            <div class="glass-card p-10 rounded-[32px]">
-                <div class="text-5xl font-extrabold tracking-tighter">7+</div>
-                <div class="text-[10px] uppercase tracking-[0.2em] font-bold opacity-30 mt-3">Sertifikasi</div>
-            </div>
-
-            <div class="glass-card p-10 rounded-[32px]">
-                <div class="text-5xl font-extrabold tracking-tighter text-blue-500">24/7</div>
-                <div class="text-[10px] uppercase tracking-[0.2em] font-bold opacity-30 mt-3">Fokus Uptime</div>
+<section id="about" class="py-5">
+    <div class="container py-4">
+        <h2 class="text-center section-title">TENTANG SAYA</h2>
+        <div class="row align-items-center">
+            <div class="col-md-10 mx-auto text-center">
+                <p class="lead text-muted">
+                    Seorang profesional Jaringan Jaringan dengan pengalaman dalam merancang, mengimplementasikan, dan memecahkan masalah infrastruktur kompleks. Spesialis dalam routing/switching, keamanan jaringan, dan mulai mendalami Network Automation menggunakan Python.
+                </p>
             </div>
         </div>
+    </div>
+</section>
 
-        <p x-show="show" x-transition.enter.duration.1000ms.delay.800ms
-           class="mt-16 text-sm font-semibold tracking-wide text-white/70">
-            Solusi praktis, dokumentasi jelas, dan training langsung untuk tim Anda.
-        </p>
-
-        <div x-show="show" x-transition.enter.duration.1000ms.delay.900ms
-             class="flex flex-wrap justify-center gap-4 mt-10">
-            <a href="#" class="px-10 py-4 border border-white/20 rounded-full text-[11px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-500">LinkedIn</a>
-            <a href="#" class="px-10 py-4 border border-white/20 rounded-full text-[11px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-500">Hubungi</a>
-            <a href="#" class="px-10 py-4 border border-white/20 rounded-full text-[11px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-500">Download CV</a>
+<section id="skills" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center section-title">TECHNICAL SKILLS</h2>
+        <div class="row text-center">
+            <div class="col-12">
+                <div class="skill-badge">Cisco IOS/XE</div>
+                <div class="skill-badge">Mikrotik (MTCNA/MTCRE)</div>
+                <div class="skill-badge">Routing (OSPF, BGP, EIGRP)</div>
+                <div class="skill-badge">VLAN & Spanning Tree</div>
+                <div class="skill-badge">Firewall (Fortigate/Palo Alto)</div>
+                <div class="skill-badge">Network Monitoring (Zabbix/PRTG)</div>
+                <div class="skill-badge">VPN (Site-to-Site/Remote Access)</div>
+                <div class="skill-badge">Python for Network (Netmiko/Nornir)</div>
+            </div>
         </div>
+    </div>
+</section>
 
-        <p x-show="show" x-transition.enter.duration.1000ms.delay.1100ms
-           class="mt-20 max-w-sm text-[11px] text-white/30 leading-relaxed uppercase tracking-widest font-medium italic">
-            Siap membantu tim Anda merancang jaringan yang andal dengan pelatihan praktis dan dokumentasi yang jelas.
-        </p>
-    </main>
+<section id="experience" class="py-5">
+    <div class="container">
+        <h2 class="text-center section-title">PENGALAMAN KERJA</h2>
+        <div class="col-md-9 mx-auto">
+            <div class="timeline-item">
+                <h4 class="fw-bold">Senior Network Engineer</h4>
+                <p class="text-primary mb-1">PT. Teknologi Maju | Jan 2022 - Sekarang</p>
+                <p>Mengelola infrastruktur data center, melakukan migrasi Core Switch, dan optimasi jalur backbone menggunakan BGP.</p>
+            </div>
+            <div class="timeline-item">
+                <h4 class="fw-bold">Network Technician</h4>
+                <p class="text-primary mb-1">Global ISP Indonesia | 2019 - 2021</p>
+                <p>Maintenance perangkat OLT, konfigurasi ONT pelanggan, dan troubleshooting jaringan FO (Fiber Optic).</p>
+            </div>
+        </div>
+    </div>
+</section>
 
+<section id="projects" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center section-title">PROJECT TERBARU</h2>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="card project-card h-100">
+                    <div class="card-body">
+                        <div class="text-primary mb-2"><i class="fas fa-network-wired fa-2x"></i></div>
+                        <h5 class="card-title fw-bold">Enterprise LAN Redesign</h5>
+                        <p class="card-text text-muted">Redesign struktur VLAN dan implementasi redundancy protocol (HSRP) untuk meminimalisir downtime perusahaan.</p>
+                        <span class="badge bg-secondary">Cisco</span> <span class="badge bg-secondary">HSRP</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card project-card h-100">
+                    <div class="card-body">
+                        <div class="text-success mb-2"><i class="fas fa-shield-alt fa-2x"></i></div>
+                        <h5 class="card-title fw-bold">Fortigate Firewall Deployment</h5>
+                        <p class="card-text text-muted">Konfigurasi kebijakan keamanan, Web Filter, dan IPS untuk melindungi jaringan internal dari serangan luar.</p>
+                        <span class="badge bg-secondary">Fortinet</span> <span class="badge bg-secondary">Security</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card project-card h-100">
+                    <div class="card-body">
+                        <div class="text-info mb-2"><i class="fab fa-python fa-2x"></i></div>
+                        <h5 class="card-title fw-bold">Automation Backup Config</h5>
+                        <p class="card-text text-muted">Membuat script Python untuk melakukan backup harian otomatis semua switch ke server storage.</p>
+                        <span class="badge bg-secondary">Python</span> <span class="badge bg-secondary">Automation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="text-center">
+    <div class="container">
+        <p class="mb-3">Hubungkan dengan saya di media sosial:</p>
+        <div class="d-flex justify-content-center gap-4 mb-4">
+            <a href="https://linkedin.com/in/username" class="text-white fs-3"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/username" class="text-white fs-3"><i class="fab fa-github"></i></a>
+            <a href="mailto:email@anda.com" class="text-white fs-3"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p class="text-muted small">&copy; 2026 Nama Anda. Built with GitHub Pages.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
