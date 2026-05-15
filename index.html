@@ -1,236 +1,610 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terminal@NetEng:~# Portfolio</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --neon-green: #00ff41;
-            --dark-bg: #050505;
-            --card-bg: #0f0f0f;
-            --border-color: #222;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio · Network Engineer</title>
+  <meta name="description" content="Portfolio Network Engineer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #0a0c10;
+      --surface: #0f1219;
+      --card:    #141820;
+      --border:  #1e2535;
+      --accent:  #00d4ff;
+      --accent2: #7c3aed;
+      --text:    #e2e8f0;
+      --muted:   #64748b;
+      --green:   #10b981;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Sora', sans-serif; line-height: 1.6; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
-        body {
-            background-color: var(--dark-bg);
-            color: #b0b0b0;
-            font-family: 'JetBrains Mono', monospace;
-            line-height: 1.5;
-        }
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(10,12,16,.93); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner { max-width: 980px; margin: 0 auto; padding: .85rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+    .nav-logo { font-family: 'Space Mono',monospace; font-size: 13px; color: var(--accent); letter-spacing: 2px; text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { font-size: 11px; color: var(--muted); text-decoration: none; letter-spacing: 1px; text-transform: uppercase; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
 
-        /* Scanline Effect */
-        body::before {
-            content: " ";
-            display: block;
-            position: fixed;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            z-index: 9999;
-            background-size: 100% 2px, 3px 100%;
-            pointer-events: none;
-        }
+    .site { max-width: 980px; margin: 0 auto; padding: 0 1.5rem; }
 
-        .navbar {
-            border-bottom: 1px solid var(--neon-green);
-            background: rgba(5, 5, 5, 0.9) !important;
-            backdrop-filter: blur(5px);
-        }
+    .section-label {
+      font-family: 'Space Mono',monospace; font-size: 11px; color: var(--accent);
+      letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1.75rem;
+      display: flex; align-items: center; gap: .75rem;
+    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    section { padding: 4rem 0; }
 
-        .terminal-header {
-            background: #1a1a1a;
-            padding: 5px 15px;
-            border-radius: 8px 8px 0 0;
-            border: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-        }
+    .hero { display: grid; grid-template-columns: 1fr auto; gap: 2.5rem; align-items: center; padding: 5rem 0 3rem; }
+    .hero-badge {
+      font-family: 'Space Mono',monospace; font-size: 11px; color: var(--green);
+      letter-spacing: 2px; text-transform: uppercase; margin-bottom: .75rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .hero-badge::before {
+      content: ''; width: 8px; height: 8px; border-radius: 50%;
+      background: var(--green); box-shadow: 0 0 8px var(--green);
+      animation: blink 2s infinite; flex-shrink: 0;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+    h1 { font-size: clamp(2.4rem,6vw,3.8rem); font-weight: 700; line-height: 1.05; letter-spacing: -2px; margin-bottom: .4rem; }
+    h1 .accent { color: var(--accent); }
+    .hero-role { font-size: 1rem; color: var(--muted); font-weight: 300; margin-bottom: 1.1rem; }
+    .hero-desc { font-size: .88rem; color: var(--muted); max-width: 520px; line-height: 1.85; margin-bottom: 1.75rem; }
+    .hero-cta { display: flex; gap: .75rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .65rem 1.4rem; border-radius: 8px;
+      font-size: .8rem; font-weight: 600; letter-spacing: .5px;
+      text-decoration: none; transition: all .2s; cursor: pointer; border: none;
+    }
+    .btn-primary { background: var(--accent); color: #0a0c10; }
+    .btn-primary:hover { background: #33ddff; transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+    .hero-avatar {
+      width: 130px; height: 130px; border-radius: 18px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.75rem; font-weight: 700; font-family: 'Space Mono',monospace; color: #fff;
+      overflow: hidden;
+    }
+    .hero-avatar img { width: 100%; height: 100%; object-fit: cover; }
 
-        .dot { height: 12px; width: 12px; border-radius: 50%; display: inline-block; margin-right: 6px; }
-        .dot-red { background-color: #ff5f56; }
-        .dot-yellow { background-color: #ffbd2e; }
-        .dot-green { background-color: #27c93f; }
+    .stats-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; padding-bottom: 4rem; }
+    .stat-box { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; text-align: center; transition: border-color .2s; }
+    .stat-box:hover { border-color: var(--accent); }
+    .stat-num { font-family: 'Space Mono',monospace; font-size: 2rem; font-weight: 700; color: var(--accent); line-height: 1; }
+    .stat-label { font-size: .7rem; color: var(--muted); margin-top: .4rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        .terminal-window {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-top: none;
-            padding: 25px;
-            border-radius: 0 0 8px 8px;
-            box-shadow: 0 10px 30px rgba(0, 255, 65, 0.05);
-        }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: .75rem; }
+    .skill-chip { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: .85rem 1rem; display: flex; align-items: center; gap: .75rem; transition: border-color .2s,transform .15s; }
+    .skill-chip:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .skill-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+    .skill-name { font-size: .82rem; font-weight: 600; }
+    .skill-sub { font-size: .7rem; color: var(--muted); margin-top: .1rem; }
 
-        .neon-text { color: var(--neon-green); text-shadow: 0 0 5px rgba(0, 255, 65, 0.5); }
-        
-        .cli-input::before { content: "root@network:~# "; color: var(--neon-green); }
-        
-        .card-net {
-            background: #0a0a0a;
-            border: 1px solid var(--border-color);
-            transition: 0.3s;
-        }
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(165px,1fr)); gap: 1rem; }
+    .cert-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 1.5rem 1rem; text-align: center; cursor: pointer;
+      transition: border-color .2s,transform .15s;
+    }
+    .cert-card:hover { border-color: var(--accent2); transform: translateY(-3px); }
+    .cert-badge {
+      width: 50px; height: 50px; border-radius: 12px; margin: 0 auto .75rem;
+      background: linear-gradient(135deg,rgba(124,58,237,.25),rgba(0,212,255,.15));
+      border: 1px solid rgba(124,58,237,.35);
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+    }
+    .cert-name { font-size: .85rem; font-weight: 600; margin-bottom: .2rem; }
+    .cert-type { font-size: .7rem; color: var(--muted); margin-bottom: .4rem; }
+    .cert-year { font-family: 'Space Mono',monospace; font-size: .65rem; color: var(--accent); }
+    .cert-hint { font-size: .65rem; color: var(--accent2); margin-top: .6rem; opacity: 0; transition: opacity .2s; }
+    .cert-card:hover .cert-hint { opacity: 1; }
 
-        .card-net:hover {
-            border-color: var(--neon-green);
-            box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
-        }
+    .exp-timeline { display: flex; flex-direction: column; gap: 1.25rem; }
+    .exp-item { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 0 14px 14px 0; padding: 1.5rem; transition: border-color .2s; }
+    .exp-item:hover { border-color: var(--accent); }
+    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: .35rem; flex-wrap: wrap; gap: .5rem; }
+    .exp-role { font-size: .95rem; font-weight: 600; }
+    .exp-year { font-family: 'Space Mono',monospace; font-size: .7rem; color: var(--accent); background: rgba(0,212,255,.1); padding: .25rem .7rem; border-radius: 999px; }
+    .exp-company { font-size: .8rem; color: var(--muted); margin-bottom: .6rem; }
+    .exp-desc { font-size: .8rem; color: var(--muted); line-height: 1.8; white-space: pre-line; }
 
-        .btn-terminal {
-            border: 1px solid var(--neon-green);
-            color: var(--neon-green);
-            background: transparent;
-            padding: 10px 20px;
-            text-transform: uppercase;
-            font-weight: bold;
-            transition: 0.3s;
-        }
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(290px,1fr)); gap: 1.25rem; }
+    .project-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: border-color .2s,transform .2s; }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .project-top-bar { height: 3px; background: linear-gradient(90deg,var(--accent2),var(--accent)); }
+    .project-img { width: 100%; height: 180px; object-fit: cover; display: block; }
+    .project-img-placeholder {
+      width: 100%; height: 180px;
+      background: linear-gradient(135deg,rgba(124,58,237,.18),rgba(0,212,255,.08));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem; border-bottom: 1px solid var(--border);
+    }
+    .project-body { padding: 1.4rem; }
+    .project-tag { font-family: 'Space Mono',monospace; font-size: .65rem; color: var(--accent2); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: .5rem; }
+    .project-title { font-size: .95rem; font-weight: 600; margin-bottom: .55rem; }
+    .project-desc { font-size: .78rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.1rem; white-space: pre-line; }
+    .project-techs { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .tech-tag { font-size: .65rem; background: rgba(124,58,237,.15); color: #a78bfa; padding: .25rem .65rem; border-radius: 999px; border: 1px solid rgba(124,58,237,.3); }
 
-        .btn-terminal:hover {
-            background: var(--neon-green);
-            color: #000;
-            box-shadow: 0 0 15px var(--neon-green);
-        }
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(210px,1fr)); gap: 1rem; }
+    .contact-item { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; align-items: center; gap: 1rem; text-decoration: none; color: var(--text); transition: border-color .2s,transform .15s; }
+    .contact-item:hover { border-color: var(--accent); transform: translateY(-2px); color: var(--accent); }
+    .contact-icon { width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0; background: rgba(0,212,255,.08); border: 1px solid rgba(0,212,255,.2); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .contact-label { font-size: .7rem; color: var(--muted); }
+    .contact-value { font-size: .82rem; font-weight: 600; }
 
-        .skill-tag {
-            border: 1px solid #444;
-            padding: 4px 10px;
-            margin: 4px;
-            display: inline-block;
-            font-size: 0.85rem;
-        }
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-text { font-family: 'Space Mono',monospace; font-size: .7rem; color: var(--muted); }
+    .footer-links { display: flex; gap: 1.25rem; }
+    .footer-links a { font-family: 'Space Mono',monospace; font-size: .7rem; color: var(--muted); text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: var(--accent); }
 
-        .nav-link:hover { color: var(--neon-green) !important; }
-        
-        @keyframes blink { 50% { opacity: 0; } }
-        .cursor { display: inline-block; width: 10px; height: 1.2em; background: var(--neon-green); animation: blink 1s infinite; vertical-align: middle; }
-    </style>
+    /* MODAL */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,.78); backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center; padding: 1rem;
+      opacity: 0; pointer-events: none; transition: opacity .25s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal-box {
+      background: var(--card); border: 1px solid var(--border); border-radius: 20px;
+      width: 100%; max-width: 700px; display: flex; flex-direction: column;
+      transform: translateY(24px); transition: transform .25s; max-height: 90vh;
+    }
+    .modal-overlay.open .modal-box { transform: translateY(0); }
+    .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); gap: 1rem; }
+    .modal-title { font-size: .95rem; font-weight: 600; }
+    .modal-meta { font-size: .75rem; color: var(--muted); margin-top: .2rem; }
+    .modal-close { width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .2s; flex-shrink: 0; }
+    .modal-close:hover { border-color: var(--accent); color: var(--accent); }
+    .modal-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; overflow: hidden; }
+    .iframe-wrap { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--surface); }
+    .iframe-wrap iframe { width: 100%; height: 400px; border: none; display: block; }
+    .modal-actions { display: flex; justify-content: center; }
+
+    @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+    .fade-up { animation: fadeUp .5s ease both; }
+    .d1{animation-delay:.1s} .d2{animation-delay:.2s}
+
+    @media(max-width:640px){
+      .hero{grid-template-columns:1fr}
+      .hero-avatar{display:none}
+      .stats-row{grid-template-columns:repeat(2,1fr)}
+      .nav-links{display:none}
+    }
+  </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-    <div class="container">
-        <a class="navbar-brand neon-text fw-bold" href="#">[ NETWORK_NODE_01 ]</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#profile">./profile</a></li>
-                <li class="nav-item"><a class="nav-link" href="#skills">./skills</a></li>
-                <li class="nav-item"><a class="nav-link" href="#projects">./projects</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact">./contact</a></li>
-            </ul>
-        </div>
-    </div>
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" id="nav-logo">PORTFOLIO</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certifications">Sertifikasi</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
 </nav>
 
-<div class="container my-5" id="profile">
-    <div class="terminal-header">
-        <span class="dot dot-red"></span>
-        <span class="dot dot-yellow"></span>
-        <span class="dot dot-green"></span>
-        <span class="ms-2 text-muted small">bash — 80x24</span>
+<!-- MODAL PREVIEW SERTIFIKAT -->
+<div class="modal-overlay" id="certModal" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="mTitle">Sertifikat</div>
+        <div class="modal-meta" id="mMeta"></div>
+      </div>
+      <button class="modal-close" id="mClose" aria-label="Tutup">✕</button>
     </div>
-    <div class="terminal-window">
-        <p class="cli-input">whoami</p>
-        <h1 class="neon-text mb-2">NAMA ANDA</h1>
-        <p class="text-white">Professional Network Engineer & Security Analyst</p>
-        
-        <p class="cli-input mt-4">cat bio.txt</p>
-        <p>Spesialis dalam merancang infrastruktur High Availability (HA) dan skalabel. Memiliki keahlian mendalam pada vendor Cisco, MikroTik, dan Fortinet. Fokus pada optimasi performa jaringan dan otomatisasi tugas administratif.<span class="cursor"></span></p>
-        
-        <div class="mt-5">
-            <a href="URL_FILE_CV_ANDA" class="btn btn-terminal me-3"><i class="fas fa-download me-2"></i>Download_CV.pdf</a>
-            <a href="#projects" class="btn btn-terminal"><i class="fas fa-search me-2"></i>View_Projects</a>
-        </div>
+    <div class="modal-body">
+      <div class="iframe-wrap">
+        <iframe id="mFrame" title="Preview Sertifikat" loading="lazy"></iframe>
+      </div>
+      <div class="modal-actions">
+        <a id="mLink" href="#" target="_blank" rel="noopener" class="btn btn-primary">Buka di Tab Baru ↗</a>
+      </div>
     </div>
+  </div>
 </div>
 
-<div class="container py-5" id="skills">
-    <h3 class="neon-text mb-4"><i class="fas fa-microchip"></i> ./tech_stack</h3>
-    <div class="row">
-        <div class="col-md-4 mb-4">
-            <div class="card card-net p-4 h-100">
-                <h5 class="text-white"><i class="fas fa-network-wired text-success me-2"></i>Infrastructure</h5>
-                <div class="mt-3">
-                    <span class="skill-tag">Routing (BGP/OSPF)</span>
-                    <span class="skill-tag">Switching (VLAN/STP)</span>
-                    <span class="skill-tag">SD-WAN</span>
-                    <span class="skill-tag">MPLS</span>
-                </div>
-            </div>
+<div class="site">
+
+  <section id="about" style="padding-top:5rem">
+    <div class="hero fade-up">
+      <div>
+        <div class="hero-badge" id="hero-badge"></div>
+        <h1 id="hero-name"></h1>
+        <div class="hero-role" id="hero-role"></div>
+        <p class="hero-desc" id="hero-desc"></p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">Lihat Projects</a>
+          <a href="#contact" class="btn btn-outline">Hubungi Saya</a>
         </div>
-        <div class="col-md-4 mb-4">
-            <div class="card card-net p-4 h-100">
-                <h5 class="text-white"><i class="fas fa-user-shield text-success me-2"></i>Security</h5>
-                <div class="mt-3">
-                    <span class="skill-tag">Fortigate Firewall</span>
-                    <span class="skill-tag">Cisco ASA</span>
-                    <span class="skill-tag">VPN (IPsec/SSL)</span>
-                    <span class="skill-tag">IDS/IPS</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="card card-net p-4 h-100">
-                <h5 class="text-white"><i class="fas fa-terminal text-success me-2"></i>Automation</h5>
-                <div class="mt-3">
-                    <span class="skill-tag">Python (Netmiko)</span>
-                    <span class="skill-tag">Ansible</span>
-                    <span class="skill-tag">Bash Scripting</span>
-                    <span class="skill-tag">Linux Admin</span>
-                </div>
-            </div>
-        </div>
+      </div>
+      <div class="hero-avatar" id="hero-avatar"></div>
     </div>
+  </section>
+
+  <div class="stats-row fade-up d1" id="stats-row"></div>
+
+  <section id="skills">
+    <div class="section-label">Skills &amp; Expertise</div>
+    <div class="skills-grid" id="skills-grid"></div>
+  </section>
+
+  <section id="certifications">
+    <div class="section-label">Sertifikasi Vendor</div>
+    <p style="font-size:.8rem;color:var(--muted);margin-bottom:1.5rem">Klik kartu untuk preview sertifikat langsung di halaman ini.</p>
+    <div class="cert-grid" id="cert-grid"></div>
+  </section>
+
+  <section id="experience">
+    <div class="section-label">Pengalaman Kerja</div>
+    <div class="exp-timeline" id="exp-timeline"></div>
+  </section>
+
+  <section id="projects">
+    <div class="section-label">Featured Projects</div>
+    <div class="project-grid" id="project-grid"></div>
+  </section>
+
+  <section id="contact">
+    <div class="section-label">Hubungi Saya</div>
+    <div class="contact-grid" id="contact-grid"></div>
+  </section>
+
+  <footer>
+    <div class="footer-text" id="footer-text"></div>
+    <div class="footer-links" id="footer-links"></div>
+  </footer>
+
 </div>
 
-<div class="container py-5" id="projects">
-    <h3 class="neon-text mb-4"><i class="fas fa-folder-open"></i> ./deployed_works</h3>
-    <div class="row">
-        <div class="col-md-6 mb-4">
-            <div class="card card-net p-0 overflow-hidden">
-                <div class="p-4">
-                    <h5 class="text-white">Multi-Site VPN Mesh Topology</h5>
-                    <p class="small">Menghubungkan 10 kantor cabang menggunakan Fortigate SD-WAN dengan redundansi otomatis antar link ISP.</p>
-                    <hr class="border-secondary">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="text-success small fw-bold">[ STATUS: DEPLOYED ]</span>
-                        <i class="fas fa-link text-muted"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 mb-4">
-            <div class="card card-net p-0 overflow-hidden">
-                <div class="p-4">
-                    <h5 class="text-white">Network Auto-Configuration Script</h5>
-                    <p class="small">Python script untuk push konfigurasi VLAN massal ke 50+ switch Cisco secara simultan guna efisiensi waktu kerja.</p>
-                    <hr class="border-secondary">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="text-success small fw-bold">[ STATUS: REPO_LIVE ]</span>
-                        <i class="fab fa-github"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<script>
+// ============================================================
+//  DATA PORTFOLIO - ILHAMSYAH
+//  Edit file ini untuk update konten website kamu.
+//  Tidak perlu menyentuh index.html sama sekali!
+// ============================================================
 
-<footer class="py-5 border-top border-secondary mt-5" id="contact">
-    <div class="container text-center">
-        <h4 class="neon-text mb-4">Establish Connection?</h4>
-        <div class="d-flex justify-content-center gap-4 fs-3 mb-4">
-            <a href="#" class="text-white"><i class="fab fa-github"></i></a>
-            <a href="#" class="text-white"><i class="fab fa-linkedin"></i></a>
-            <a href="mailto:anda@email.com" class="text-white"><i class="fas fa-envelope"></i></a>
-        </div>
-        <p class="small text-muted">System Uptime: 99.9% | Developed by [Nama Anda]</p>
-        <p class="text-muted" style="font-size: 10px;">&copy; 2024 - TERMINAL_ACCESS_AUTHORIZED</p>
-    </div>
-</footer>
+const PORTFOLIO = {
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  // ── PROFIL UTAMA ─────────────────────────────────────────
+  profile: {
+    name: "ILHAMSYAH",
+    title: "Network Engineer",
+    tagline: "5 Years Experience",
+    status: "open to opportunities",       // tampil di badge hijau
+    summary: `Spesialis infrastruktur jaringan enterprise dengan pengalaman
+membangun dan mengelola network skala besar — dari office building
+hingga koneksi multi-site menggunakan VPN & radio link.
+Selalu update dan belajar teknologi terbaru di dunia networking.`,
+    location: "Jakarta, Indonesia",
+    avatar: "IL",                          // 2 huruf inisial kamu
+    // Ganti dengan path foto jika punya: "images/foto.jpg"
+    // avatarImage: "images/foto.jpg",
+  },
+
+  // ── KONTAK ───────────────────────────────────────────────
+  contact: {
+    email:     "ilhamsyah@email.com",
+    linkedin:  "https://linkedin.com/in/ilhamsyah",
+    github:    "https://github.com/ilhamsyah",
+    whatsapp:  "https://wa.me/628xxxxxxxxxx",
+  },
+
+  // ── STATISTIK (angka di bawah hero) ─────────────────────
+  stats: [
+    { num: "5+",  label: "Years Exp" },
+    { num: "5",   label: "Sertifikasi" },
+    { num: "10+", label: "Projects Done" },
+    { num: "24/7",label: "Network Uptime" },
+  ],
+
+  // ── SKILLS ───────────────────────────────────────────────
+  skills: [
+    { name: "Routing & Switching",  sub: "BGP, OSPF, VLAN, STP",       color: "#00d4ff" },
+    { name: "VPN Tunneling",        sub: "IPSec, L2TP, PPTP, SSTP",    color: "#7c3aed" },
+    { name: "Wireless Network",     sub: "WiFi 6, Mesh, Radio Link",    color: "#10b981" },
+    { name: "Network Security",     sub: "Firewall, ACL, IDS/IPS",      color: "#f59e0b" },
+    { name: "Network Monitoring",   sub: "SNMP, Zabbix, Grafana",       color: "#ef4444" },
+    { name: "Linux Server",         sub: "Ubuntu, Debian, CentOS",      color: "#06b6d4" },
+    { name: "Site-to-Site WAN",     sub: "MPLS, Metro Ethernet",        color: "#8b5cf6" },
+    { name: "Troubleshooting",      sub: "Packet Analysis, Wireshark",  color: "#ec4899" },
+  ],
+
+  // ── SERTIFIKASI ───────────────────────────────────────────
+  // previewUrl: link ke Credly / Google Drive / vendor website
+  // Contoh Google Drive: "https://drive.google.com/file/d/XXXX/view"
+  // Contoh Credly:       "https://www.credly.com/badges/XXXX"
+  certifications: [
+    {
+      name: "MikroTik MTCNA",
+      type: "Certified Network Associate",
+      icon: "🏅",
+      issuer: "MikroTik",
+      year: "2021",
+      previewUrl: "https://mikrotik.com/training/certificates/GANTI_LINK_SERTIFIKAT",
+    },
+    {
+      name: "Ruijie RCNA",
+      type: "Certified Network Associate",
+      icon: "🏅",
+      issuer: "Ruijie Networks",
+      year: "2022",
+      previewUrl: "https://GANTI_LINK_SERTIFIKAT_RUIJIE",
+    },
+    {
+      name: "TP-Link Certified",
+      type: "Network Professional",
+      icon: "🏅",
+      issuer: "TP-Link",
+      year: "2022",
+      previewUrl: "https://GANTI_LINK_SERTIFIKAT_TPLINK",
+    },
+    {
+      name: "Ubiquiti UniFi",
+      type: "Certified Specialist (UALS)",
+      icon: "🏅",
+      issuer: "Ubiquiti",
+      year: "2023",
+      previewUrl: "https://GANTI_LINK_SERTIFIKAT_UBIQUITI",
+    },
+    {
+      name: "Linux Essentials",
+      type: "LPI Certified",
+      icon: "🏅",
+      issuer: "LPI",
+      year: "2020",
+      previewUrl: "https://GANTI_LINK_SERTIFIKAT_LPI",
+    },
+  ],
+
+  // ── PENGALAMAN KERJA ─────────────────────────────────────
+  experience: [
+    {
+      role: "Senior Network Engineer",
+      company: "PT. Nama Perusahaan",
+      location: "Jakarta, Indonesia",
+      period: "2022 – Sekarang",
+      desc: `Mengelola infrastruktur jaringan enterprise multi-site,
+implementasi kebijakan keamanan jaringan, memimpin tim teknis
+dalam deployment, serta bertanggung jawab atas availability
+dan performa jaringan 24/7.`,
+    },
+    {
+      role: "Network Engineer",
+      company: "PT. Nama Perusahaan",
+      location: "Jakarta, Indonesia",
+      period: "2020 – 2022",
+      desc: `Instalasi dan konfigurasi perangkat jaringan (router, switch,
+access point), monitoring jaringan proaktif, troubleshooting
+koneksi WAN/LAN dan layanan internet untuk klien korporat.`,
+    },
+    {
+      role: "Junior Network Technician",
+      company: "PT. Nama Perusahaan",
+      location: "Jakarta, Indonesia",
+      period: "2019 – 2020",
+      desc: `Membantu instalasi cabling dan perangkat jaringan, konfigurasi
+dasar switch dan router, serta mendukung tim senior dalam
+proyek deployment jaringan skala menengah.`,
+    },
+  ],
+
+  // ── PROJECTS ─────────────────────────────────────────────
+  // image: path ke file gambar di folder images/
+  //   Contoh: "images/project-office.jpg"
+  //   Jika kosong ("") akan tampil placeholder warna
+  // tags: teknologi yang dipakai
+  projects: [
+    {
+      category: "Enterprise · Infrastructure",
+      title: "Enterprise Office Network Infrastructure",
+      desc: `Membangun infrastruktur jaringan lengkap untuk office building
+skala enterprise, termasuk desain core-distribution-access layer,
+segmentasi VLAN, QoS policy, dan manajemen bandwidth terpusat.`,
+      image: "images/project-enterprise.jpg",
+      tags: ["MikroTik", "Ruijie", "VLAN", "QoS", "STP"],
+    },
+    {
+      category: "Site-to-Site · VPN",
+      title: "Multi-Branch VPN Connectivity",
+      desc: `Implementasi koneksi site-to-site dari kantor pusat ke multiple
+cabang menggunakan IPSec VPN tunnel dengan failover otomatis
+dan load balancing dual-ISP.`,
+      image: "images/project-vpn.jpg",
+      tags: ["IPSec VPN", "MikroTik", "Dual-ISP", "Failover"],
+    },
+    {
+      category: "Wireless · Radio Link",
+      title: "Point-to-Point Radio Link",
+      desc: `Instalasi koneksi radio link antar gedung sebagai pengganti
+fiber optik, mencapai throughput stabil di atas 100Mbps pada
+jarak beberapa kilometer dengan uptime tinggi.`,
+      image: "images/project-radiolink.jpg",
+      tags: ["Ubiquiti", "AirMax", "PtP Link", "MIMO"],
+    },
+    {
+      category: "Monitoring · Automation",
+      title: "Network Monitoring Dashboard",
+      desc: `Setup sistem monitoring terpusat menggunakan Zabbix dan Grafana
+untuk memantau semua perangkat jaringan secara real-time dengan
+alerting otomatis via Telegram.`,
+      image: "images/project-monitoring.jpg",
+      tags: ["Zabbix", "Grafana", "SNMP", "Linux"],
+    },
+    {
+      category: "Security · Firewall",
+      title: "Network Security Hardening",
+      desc: `Implementasi kebijakan keamanan jaringan komprehensif: firewall
+rules, IDS/IPS, network segmentation, dan audit keamanan rutin
+untuk lingkungan enterprise.`,
+      image: "images/project-security.jpg",
+      tags: ["Firewall", "ACL", "IDS/IPS", "VLAN Segmentation"],
+    },
+    {
+      category: "Wireless · UniFi",
+      title: "Enterprise WiFi Deployment",
+      desc: `Deployment jaringan WiFi enterprise menggunakan UniFi Controller
+dengan centralized management, guest portal, roaming seamless
+antar AP, dan capacity planning.`,
+      image: "images/project-wifi.jpg",
+      tags: ["UniFi", "WiFi 6", "Guest Portal", "Roaming"],
+    },
+  ],
+
+};
+
+</script>
+<script>
+(function () {
+  var D = PORTFOLIO;
+
+  // HERO
+  document.title = D.profile.name + ' · ' + D.profile.title;
+  document.querySelector('meta[name="description"]').content = 'Portfolio ' + D.profile.name;
+  document.getElementById('nav-logo').textContent = D.profile.name + '.DEV';
+  document.getElementById('hero-badge').textContent = D.profile.status;
+
+  var mid = Math.ceil(D.profile.name.length / 2);
+  document.getElementById('hero-name').innerHTML =
+    D.profile.name.slice(0, mid) + '<span class="accent">' + D.profile.name.slice(mid) + '</span>';
+  document.getElementById('hero-role').textContent = D.profile.title + ' · ' + D.profile.tagline;
+  document.getElementById('hero-desc').textContent = D.profile.summary;
+
+  var av = document.getElementById('hero-avatar');
+  if (D.profile.avatarImage) {
+    av.innerHTML = '<img src="' + D.profile.avatarImage + '" alt="Foto ' + D.profile.name + '" />';
+  } else {
+    av.textContent = D.profile.avatar;
+  }
+
+  // STATS
+  document.getElementById('stats-row').innerHTML = D.stats.map(function (s) {
+    return '<div class="stat-box"><div class="stat-num">' + s.num + '</div><div class="stat-label">' + s.label + '</div></div>';
+  }).join('');
+
+  // SKILLS
+  document.getElementById('skills-grid').innerHTML = D.skills.map(function (s) {
+    return '<div class="skill-chip"><div class="skill-dot" style="background:' + s.color + '"></div>' +
+      '<div><div class="skill-name">' + s.name + '</div><div class="skill-sub">' + s.sub + '</div></div></div>';
+  }).join('');
+
+  // CERTS
+  document.getElementById('cert-grid').innerHTML = D.certifications.map(function (c, i) {
+    return '<div class="cert-card" onclick="openCert(' + i + ')" tabindex="0" role="button" ' +
+      'onkeydown="if(event.key===\'Enter\'||event.key===\' \')openCert(' + i + ')">' +
+      '<div class="cert-badge">' + c.icon + '</div>' +
+      '<div class="cert-name">' + c.name + '</div>' +
+      '<div class="cert-type">' + c.type + '</div>' +
+      '<div class="cert-year">' + c.issuer + ' &middot; ' + c.year + '</div>' +
+      '<div class="cert-hint">Klik untuk preview &rarr;</div>' +
+      '</div>';
+  }).join('');
+
+  // EXPERIENCE
+  document.getElementById('exp-timeline').innerHTML = D.experience.map(function (e) {
+    return '<div class="exp-item">' +
+      '<div class="exp-header"><div class="exp-role">' + e.role + '</div><div class="exp-year">' + e.period + '</div></div>' +
+      '<div class="exp-company">' + e.company + ' &middot; ' + e.location + '</div>' +
+      '<div class="exp-desc">' + e.desc + '</div></div>';
+  }).join('');
+
+  // PROJECTS
+  var icons = ['🏢', '🔒', '📡', '📊', '🛡️', '📶'];
+  document.getElementById('project-grid').innerHTML = D.projects.map(function (p, i) {
+    var mediaHtml;
+    if (p.image) {
+      mediaHtml = '<img class="project-img" src="' + p.image + '" alt="' + p.title +
+        '" onerror="this.outerHTML=\'<div class=&quot;project-img-placeholder&quot;>' + icons[i % icons.length] + '</div>\'" />';
+    } else {
+      mediaHtml = '<div class="project-img-placeholder">' + icons[i % icons.length] + '</div>';
+    }
+    return '<div class="project-card">' +
+      '<div class="project-top-bar"></div>' + mediaHtml +
+      '<div class="project-body">' +
+      '<div class="project-tag">' + p.category + '</div>' +
+      '<div class="project-title">' + p.title + '</div>' +
+      '<div class="project-desc">' + p.desc + '</div>' +
+      '<div class="project-techs">' + p.tags.map(function (t) {
+        return '<span class="tech-tag">' + t + '</span>';
+      }).join('') + '</div></div></div>';
+  }).join('');
+
+  // CONTACT
+  var ct = D.contact;
+  var items = [
+    { href: 'mailto:' + ct.email, icon: '✉️', label: 'Email', value: ct.email },
+    { href: ct.linkedin, icon: '💼', label: 'LinkedIn', value: 'Lihat profil LinkedIn' },
+    { href: ct.github, icon: '⚡', label: 'GitHub', value: 'Lihat profil GitHub' },
+    { href: ct.whatsapp, icon: '📱', label: 'WhatsApp', value: 'Chat via WhatsApp' }
+  ];
+  document.getElementById('contact-grid').innerHTML = items.map(function (ci) {
+    return '<a href="' + ci.href + '" class="contact-item" target="_blank" rel="noopener">' +
+      '<div class="contact-icon">' + ci.icon + '</div>' +
+      '<div><div class="contact-label">' + ci.label + '</div>' +
+      '<div class="contact-value">' + ci.value + '</div></div></a>';
+  }).join('');
+
+  // FOOTER
+  var yr = new Date().getFullYear();
+  document.getElementById('footer-text').textContent =
+    '© ' + yr + ' ' + D.profile.name + ' · ' + D.profile.title + ' · ' + D.profile.location;
+  document.getElementById('footer-links').innerHTML =
+    '<a href="' + ct.github + '" target="_blank" rel="noopener">GitHub</a>' +
+    '<a href="' + ct.linkedin + '" target="_blank" rel="noopener">LinkedIn</a>' +
+    '<a href="mailto:' + ct.email + '">Email</a>';
+
+  // MODAL SERTIFIKAT
+  var modal  = document.getElementById('certModal');
+  var mTitle = document.getElementById('mTitle');
+  var mMeta  = document.getElementById('mMeta');
+  var mFrame = document.getElementById('mFrame');
+  var mLink  = document.getElementById('mLink');
+  var mClose = document.getElementById('mClose');
+
+  window.openCert = function (i) {
+    var c = D.certifications[i];
+    mTitle.textContent = c.name;
+    mMeta.textContent  = c.issuer + ' · ' + c.type + ' · ' + c.year;
+    mFrame.src = c.previewUrl;
+    mLink.href = c.previewUrl;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  function closeCert() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(function () { mFrame.src = ''; }, 300);
+  }
+
+  mClose.addEventListener('click', closeCert);
+  modal.addEventListener('click', function (e) { if (e.target === modal) closeCert(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeCert(); });
+}());
+</script>
 </body>
 </html>
