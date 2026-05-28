@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ilhamsyah | Senior Network Engineer Portfolio</title>
+    <!-- Tailwind CSS & Config for Dark Mode -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+    <!-- Lucide Icons -->
+   <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .font-tech {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* Penyesuaian Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-[#090d16] dark:text-slate-100 overflow-x-hidden relative min-h-screen transition-colors duration-300">
+
+    <!-- Efek Radial Glow Latar Belakang yang Halus -->
+    <div class="fixed top-0 left-1/4 w-[500px] h-[500px] bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+    <div class="fixed bottom-10 right-1/4 w-[400px] h-[400px] bg-teal-500/5 dark:bg-teal-500/5 rounded-full blur-[100px] pointer-events-none z-0"></div>
+
+    <!-- Header / Navigasi -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-[#090d16]/85 backdrop-blur-md border-b border-slate-200 dark:border-slate-800/60 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-2.5">
+                <div class="h-7 w-7 rounded bg-blue-600 flex items-center justify-center text-white font-bold text-xs font-tech">
+                    IS
+                </div>
+                <span class="font-tech font-semibold text-sm tracking-wider text-slate-700 dark:text-slate-200">ILHAMSYAH</span>
+            </div>
+            
+            <!-- Menu Desktop -->
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium text-slate-500 dark:text-slate-400">
+                <a href="#tentang" class="hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+                    <span class="lang-id">Tentang</span><span class="lang-en hidden">About</span>
+                </a>
+                <a href="#sertifikasi" class="hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+                    <span class="lang-id">Sertifikasi</span><span class="lang-en hidden">Certifications</span>
+                </a>
+                <a href="#keahlian" class="hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+                    <span class="lang-id">Keahlian</span><span class="lang-en hidden">Skills</span>
+                </a>
+                <a href="#pengalaman" class="hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+                    <span class="lang-id">Pengalaman</span><span class="lang-en hidden">Experience</span>
+                </a>
+                <a href="#kalkulator" class="hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+                    <span class="lang-id">Utilitas</span><span class="lang-en hidden">Utility</span>
+                </a>
+                <a href="#asisten-ai" class="text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-500 transition-colors">
+                    <span class="lang-id">Asisten AI ✨</span><span class="lang-en hidden">AI Assistant ✨</span>
+                </a>
+                <a href="#proyek" class="hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+                    <span class="lang-id">Proyek</span><span class="lang-en hidden">Projects</span>
+                </a>
+                <a href="#kontak" class="hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+                    <span class="lang-id">Kontak</span><span class="lang-en hidden">Contact</span>
+                </a>
+            </nav>
+
+            <!-- Kontrol Utama (Bahasa & Tema) -->
+            <div class="hidden lg:flex items-center space-x-4">
+                <!-- Toggle Bahasa -->
+                <button onclick="toggleLanguage()" class="flex items-center space-x-1.5 px-2.5 py-1 rounded border border-slate-300 dark:border-slate-700 text-xs font-tech font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                    <i data-lucide="globe" class="h-3.5 w-3.5"></i>
+                    <span id="langLabel">EN</span>
+                </button>
+
+                <!-- Toggle Tema -->
+                <button onclick="toggleTheme()" class="p-1.5 rounded border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300">
+                    <i data-lucide="sun" class="h-4 w-4 block dark:hidden"></i>
+                    <i data-lucide="moon" class="h-4 w-4 hidden dark:block"></i>
+                </button>
+            </div>
+
+            <!-- Tombol Menu Mobile -->
+            <div class="flex items-center space-x-3 lg:hidden">
+                <!-- Toggle Tema (Mobile) -->
+                <button onclick="toggleTheme()" class="p-1.5 rounded border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300">
+                    <i data-lucide="sun" class="h-4 w-4 block dark:hidden"></i>
+                    <i data-lucide="moon" class="h-4 w-4 hidden dark:block"></i>
+                </button>
+                <button id="menuBtn" class="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white p-2 focus:outline-none" aria-label="Toggle Menu">
+                    <i data-lucide="menu" class="h-5 w-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Laci Navigasi Mobile -->
+        <div id="mobileMenu" class="hidden lg:hidden absolute top-16 left-0 right-0 bg-white dark:bg-[#090d16] border-b border-slate-200 dark:border-slate-800 px-6 py-4 space-y-3 shadow-xl">
+            <a href="#tentang" class="block text-slate-600 dark:text-slate-400 hover:text-blue-500 py-2 text-sm" onclick="closeMenu()">
+                <span class="lang-id">Tentang</span><span class="lang-en hidden">About</span>
+            </a>
+            <a href="#sertifikasi" class="block text-slate-600 dark:text-slate-400 hover:text-blue-500 py-2 text-sm" onclick="closeMenu()">
+                <span class="lang-id">Sertifikasi</span><span class="lang-en hidden">Certifications</span>
+            </a>
+            <a href="#keahlian" class="block text-slate-600 dark:text-slate-400 hover:text-blue-500 py-2 text-sm" onclick="closeMenu()">
+                <span class="lang-id">Keahlian</span><span class="lang-en hidden">Skills</span>
+            </a>
+            <a href="#pengalaman" class="block text-slate-600 dark:text-slate-400 hover:text-blue-500 py-2 text-sm" onclick="closeMenu()">
+                <span class="lang-id">Pengalaman</span><span class="lang-en hidden">Experience</span>
+            </a>
+            <a href="#kalkulator" class="block text-slate-600 dark:text-slate-400 hover:text-blue-500 py-2 text-sm" onclick="closeMenu()">
+                <span class="lang-id">Utilitas</span><span class="lang-en hidden">Utility</span>
+            </a>
+            <a href="#asisten-ai" class="block text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-500 py-2 text-sm" onclick="closeMenu()">
+                <span class="lang-id">Asisten AI ✨</span><span class="lang-en hidden">AI Assistant ✨</span>
+            </a>
+            <a href="#proyek" class="block text-slate-600 dark:text-slate-400 hover:text-blue-500 py-2 text-sm" onclick="closeMenu()">
+                <span class="lang-id">Proyek</span><span class="lang-en hidden">Projects</span>
+            </a>
+            <a href="#kontak" class="block text-slate-600 dark:text-slate-400 hover:text-blue-500 py-2 text-sm" onclick="closeMenu()">
+                <span class="lang-id">Kontak</span><span class="lang-en hidden">Contact</span>
+            </a>
+            <div class="pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-tech">PILIH BAHASA / SELECT LANGUAGE</span>
+                <button onclick="toggleLanguage()" class="flex items-center space-x-1 px-3 py-1 rounded border border-slate-300 dark:border-slate-700 text-xs font-tech font-semibold">
+                    <i data-lucide="globe" class="h-3 w-3"></i>
+                    <span id="langLabelMobile">EN</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Pembungkus Konten Utama -->
+    <main class="relative z-10 max-w-5xl mx-auto px-6 pt-28 pb-20 space-y-28">
+
+        <!-- Section Hero (Tentang) -->
+        <section id="tentang" class="pt-8 md:pt-14 flex flex-col md:flex-row items-start justify-between gap-12">
+            <div class="flex-1 space-y-6">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-tech">
+                    <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="lang-id">ONLINE & TERSEDIA UNTUK PROYEK</span>
+                    <span class="lang-en hidden">ONLINE & AVAILABLE FOR PROJECTS</span>
+                </div>
+                
+                <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-950 dark:text-white">
+                    Ilhamsyah
+                </h1>
+                <h2 class="text-lg md:text-xl font-medium text-slate-600 dark:text-slate-400 font-tech">
+                    Senior Systems & Network Infrastructure Engineer
+                </h2>
+                
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-base max-w-xl">
+                    <span class="lang-id">
+                        Spesialis infrastruktur jaringan dengan <span class="text-blue-600 dark:text-blue-400 font-semibold">5 tahun pengalaman</span> dalam merancang, mengamankan, dan mengoptimalkan jaringan enterprise skala besar. Mahir mengintegrasikan solusi multi-vendor seperti <span class="text-slate-900 dark:text-slate-100 font-medium">MikroTik, Ruijie, TP-Link, dan UniFi</span> berbasis sistem otomasi <span class="text-slate-900 dark:text-slate-100 font-medium">Linux</span> yang andal.
+                    </span>
+                    <span class="lang-en hidden">
+                        Network infrastructure specialist with <span class="text-blue-600 dark:text-blue-400 font-semibold">5 years of experience</span> in designing, securing, and optimizing large-scale enterprise networks. Proficient in integrating multi-vendor solutions including <span class="text-slate-900 dark:text-slate-100 font-medium">MikroTik, Ruijie, TP-Link, and UniFi</span> driven by reliable <span class="text-slate-900 dark:text-slate-100 font-medium">Linux</span> automation systems.
+                    </span>
+                </p>
+
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <a href="#kontak" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded transition-all flex items-center space-x-2 shadow-sm">
+                        <span class="lang-id">Hubungi Saya</span>
+                        <span class="lang-en hidden">Contact Me</span>
+                        <i data-lucide="arrow-right" class="h-4 w-4"></i>
+                    </a>
+                    <a href="#asisten-ai" class="px-5 py-2.5 bg-blue-550/10 text-blue-655 dark:text-blue-400 text-sm font-semibold rounded border border-blue-500/30 hover:bg-blue-500/20 transition-all flex items-center space-x-2">
+                        <span class="lang-id">Tanya Asisten AI ✨</span>
+                        <span class="lang-en hidden">Ask AI Assistant ✨</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Foto Profil -->
+            <div class="w-full md:w-80 flex-shrink-0">
+                <div class="relative rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800/80 shadow-md">
+                    <img 
+                        src="https://raw.githubusercontent.com/ilhamsyah07/ilhamsyah07.github.io/main/images/ilham.jpg" 
+                        alt="Ilhamsyah" 
+                        class="w-full h-auto object-cover"
+                    >
+                    <!-- Badge status online -->
+                    <div class="absolute bottom-3 left-3 flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-sm text-white text-xs font-tech">
+                        <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span class="lang-en">Available for Consultation</span><span class="lang-id hidden">Tersedia untuk Berkonsultasi</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Sertifikasi (Vendor Terpercaya) -->
+        <section id="sertifikasi" class="scroll-mt-20 space-y-8">
+            <div class="space-y-2">
+                <h2 class="text-2xl font-bold tracking-tight text-slate-950 dark:text-white">
+                    <span class="lang-id">Sertifikasi & Kredensial</span><span class="lang-en hidden">Certifications & Credentials</span>
+                </h2>
+                <p class="text-slate-500 dark:text-slate-400 text-sm max-w-2xl">
+                    <span class="lang-id">Pengakuan industri resmi dari berbagai vendor global untuk menjamin implementasi jaringan sesuai standar internasional. Klik kartu sertifikasi untuk melakukan verifikasi langsung.</span>
+                    <span class="lang-en hidden">Official industry recognition from global vendors. Click any card to verify certificates directly.</span>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+                <!-- MikroTik -->
+                <a href="https://drive.google.com/file/d/1PDPKzKsUDKroWcNZFJxzPnwYnVxA7afr/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800/60 p-5 rounded-lg hover:border-blue-500/50 dark:hover:border-blue-550/40 transition-all group flex flex-col justify-between h-full shadow-sm hover:shadow-md hover:-translate-y-1 duration-300">
+                    <div class="space-y-3">
+                        <div class="text-red-500 font-bold font-tech text-sm tracking-widest border-b border-slate-200 dark:border-slate-800/80 pb-2 flex justify-between items-center">
+                            <span>MIKROTIK</span>
+                            <i data-lucide="external-link" class="h-3.5 w-3.5 opacity-50 group-hover:opacity-100 transition-opacity"></i>
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            <span class="lang-id">Kontrol Rute & Trafik</span><span class="lang-en hidden">Routing & Traffic Control</span>
+                        </h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">
+                            <span class="lang-id">Spesialisasi dalam manajemen bandwidth, dynamic routing (OSPF), dan konfigurasi tingkat lanjut RouterOS.</span>
+                            <span class="lang-en hidden">Specializing in bandwidth management, dynamic routing (OSPF), and advanced RouterOS configurations.</span>
+                        </p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4 border-t border-slate-100 dark:border-slate-800/60 pt-3">
+                        <span class="text-[10px] font-tech text-slate-400 dark:text-slate-500">MTCNA, MTCRE</span>
+                        <span class="text-[10px] font-bold text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-all flex items-center gap-1">
+                            <span class="lang-id">Verifikasi</span><span class="lang-en hidden">Verify</span> &rarr;
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Ruijie -->
+                <a href="https://drive.google.com/file/d/1pqjysjcMTWVwqnzrd1LId3IHryFCr8Af/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800/60 p-5 rounded-lg hover:border-blue-500/50 dark:hover:border-blue-550/40 transition-all group flex flex-col justify-between h-full shadow-sm hover:shadow-md hover:-translate-y-1 duration-300">
+                    <div class="space-y-3">
+                        <div class="text-blue-500 font-bold font-tech text-sm tracking-widest border-b border-slate-200 dark:border-slate-800/80 pb-2 flex justify-between items-center">
+                            <span>RUIJIE</span>
+                            <i data-lucide="external-link" class="h-3.5 w-3.5 opacity-50 group-hover:opacity-100 transition-opacity"></i>
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            <span class="lang-id">Enterprise Switching</span><span class="lang-en hidden">Enterprise Switching</span>
+                        </h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">
+                            <span class="lang-id">Implementasi core-switching, topologi tangguh (resilient switching), dan Ruijie Cloud Controller.</span>
+                            <span class="lang-en hidden">Implementation of core-switching, resilient switching topologies, and Ruijie Cloud Controller management.</span>
+                        </p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4 border-t border-slate-100 dark:border-slate-800/60 pt-3">
+                        <span class="text-[10px] font-tech text-slate-400 dark:text-slate-500">RCNA Certified</span>
+                        <span class="text-[10px] font-bold text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-all flex items-center gap-1">
+                            <span class="lang-id">Verifikasi</span><span class="lang-en hidden">Verify</span> &rarr;
+                        </span>
+                    </div>
+                </a>
+
+                <!-- TP-Link -->
+                <a href="https://drive.google.com/file/d/1ZjXT3pHWkAo1qrsCo1Oz6x_f9qhMyMIp/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800/60 p-5 rounded-lg hover:border-blue-500/50 dark:hover:border-blue-550/40 transition-all group flex flex-col justify-between h-full shadow-sm hover:shadow-md hover:-translate-y-1 duration-300">
+                    <div class="space-y-3">
+                        <div class="text-teal-600 dark:text-teal-400 font-bold font-tech text-sm tracking-widest border-b border-slate-200 dark:border-slate-800/80 pb-2 flex justify-between items-center">
+                            <span>TP-LINK</span>
+                            <i data-lucide="external-link" class="h-3.5 w-3.5 opacity-50 group-hover:opacity-100 transition-opacity"></i>
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            <span class="lang-id">Omada SDN Solution</span><span class="lang-en hidden">Omada SDN Solution</span>
+                        </h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">
+                            <span class="lang-id">Perancangan jaringan berbasis Software-Defined Networking untuk integrasi kantor cabang terdistribusi.</span>
+                            <span class="lang-en hidden">Designing Software-Defined Networking layouts for distributed branch office connectivity.</span>
+                        </p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4 border-t border-slate-100 dark:border-slate-800/60 pt-3">
+                        <span class="text-[10px] font-tech text-slate-400 dark:text-slate-500">OCNA Certified</span>
+                        <span class="text-[10px] font-bold text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-all flex items-center gap-1">
+                            <span class="lang-id">Verifikasi</span><span class="lang-en hidden">Verify</span> &rarr;
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Ubiquiti UniFi -->
+                <a href="https://your-unifi-certificate-link.com" target="_blank" rel="noopener noreferrer" class="bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800/60 p-5 rounded-lg hover:border-blue-500/50 dark:hover:border-blue-550/40 transition-all group flex flex-col justify-between h-full shadow-sm hover:shadow-md hover:-translate-y-1 duration-300">
+                    <div class="space-y-3">
+                        <div class="text-indigo-500 font-bold font-tech text-sm tracking-widest border-b border-slate-200 dark:border-slate-800/80 pb-2 flex justify-between items-center">
+                            <span>UBIQUITI</span>
+                            <i data-lucide="external-link" class="h-3.5 w-3.5 opacity-50 group-hover:opacity-100 transition-opacity"></i>
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            <span class="lang-id">UniFi Wireless Enterprise</span><span class="lang-en hidden">UniFi Wireless Enterprise</span>
+                        </h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">
+                            <span class="lang-id">Perencanaan RF, penempatan AP berkepadatan tinggi, dan audit sinyal nirkabel.</span>
+                            <span class="lang-en hidden">RF site planning, high-density access point placement, and wireless signal auditing.</span>
+                        </p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4 border-t border-slate-100 dark:border-slate-800/60 pt-3">
+                        <span class="text-[10px] font-tech text-slate-400 dark:text-slate-500">UEWA Architect (soon)</span>
+                        <span class="text-[10px] font-bold text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-all flex items-center gap-1">
+                            <span class="lang-id">Verifikasi</span><span class="lang-en hidden">Verify</span> &rarr;
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Linux -->
+                <a href="https://your-linux-certificate-link.com" target="_blank" rel="noopener noreferrer" class="bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800/60 p-5 rounded-lg hover:border-blue-500/50 dark:hover:border-blue-550/40 transition-all group flex flex-col justify-between h-full shadow-sm hover:shadow-md hover:-translate-y-1 duration-300">
+                    <div class="space-y-3">
+                        <div class="text-amber-600 dark:text-amber-400 font-bold font-tech text-sm tracking-widest border-b border-slate-200 dark:border-slate-800/80 pb-2 flex justify-between items-center">
+                            <span>LINUX</span>
+                            <i data-lucide="external-link" class="h-3.5 w-3.5 opacity-50 group-hover:opacity-100 transition-opacity"></i>
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            <span class="lang-id">Operasional Sistem</span><span class="lang-en hidden">Systems Operations</span>
+                        </h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">
+                            <span class="lang-id">Konfigurasi server kritis (DHCP, Bind9 DNS, WireGuard, Nginx) dan otomasi skrip bash.</span>
+                            <span class="lang-en hidden">Configuration of critical servers (DHCP, Bind9 DNS, WireGuard VPN, Nginx) and shell script automation.</span>
+                        </p>
+                    </div>
+                    <div class="flex justify-between items-center mt-4 border-t border-slate-100 dark:border-slate-800/60 pt-3">
+                        <span class="text-[10px] font-tech text-slate-400 dark:text-slate-500">LPI Professional (soon)</span>
+                        <span class="text-[10px] font-bold text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-all flex items-center gap-1">
+                            <span class="lang-id">Verifikasi</span><span class="lang-en hidden">Verify</span> &rarr;
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Section Keahlian (Skill Matrix) -->
+        <section id="keahlian" class="scroll-mt-20 space-y-8">
+            <div class="space-y-2">
+                <h2 class="text-2xl font-bold tracking-tight text-slate-950 dark:text-white">
+                    <span class="lang-id">Matriks Keahlian Teknis</span><span class="lang-en hidden">Technical Skills Matrix</span>
+                </h2>
+                <p class="text-slate-500 dark:text-slate-400 text-sm max-w-2xl">
+                    <span class="lang-id">Gambaran detail keahlian teknis operasional dalam pengelolaan infrastruktur sistem jaringannya.</span>
+                    <span class="lang-en hidden">Detailed overview of operational technical skills in managing network systems infrastructure.</span>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Routing & Switching -->
+                <div class="bg-white dark:bg-slate-900/20 border border-slate-200 dark:border-slate-800 p-6 rounded-lg space-y-5 shadow-sm">
+                    <div class="flex items-center space-x-3 text-blue-600 dark:text-blue-400">
+                        <i data-lucide="git-commit" class="h-5 w-5"></i>
+                        <h3 class="font-bold text-slate-900 dark:text-slate-100">Routing & Switching</h3>
+                    </div>
+                    <ul class="space-y-4 text-xs">
+                        <li class="space-y-1">
+                            <div class="flex justify-between text-slate-500 dark:text-slate-400">
+                                <span class="lang-id">BGP, OSPF, Routing Statis</span>
+                                <span class="lang-en hidden">BGP, OSPF, Static Routing</span>
+                                <span class="text-slate-900 dark:text-slate-200 font-semibold">95%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-950 h-1 rounded-full"><div class="bg-blue-500 h-full w-[95%] rounded-full"></div></div>
+                        </li>
+                        <li class="space-y-1">
+                            <div class="flex justify-between text-slate-500 dark:text-slate-400">
+                                <span>VLAN Trunking, LACP, STP</span>
+                                <span class="text-slate-900 dark:text-slate-200 font-semibold">90%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-950 h-1 rounded-full"><div class="bg-blue-500 h-full w-[90%] rounded-full"></div></div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Sistem & Server -->
+                <div class="bg-white dark:bg-slate-900/20 border border-slate-200 dark:border-slate-800 p-6 rounded-lg space-y-5 shadow-sm">
+                    <div class="flex items-center space-x-3 text-teal-600 dark:text-teal-400">
+                        <i data-lucide="server" class="h-5 w-5"></i>
+                        <h3 class="font-bold text-slate-900 dark:text-slate-100">
+                            <span class="lang-id">Sistem & Nirkabel</span><span class="lang-en hidden">Systems & Wireless</span>
+                        </h3>
+                    </div>
+                    <ul class="space-y-4 text-xs">
+                        <li class="space-y-1">
+                            <div class="flex justify-between text-slate-500 dark:text-slate-400">
+                                <span class="lang-id">Optimalisasi Wi-Fi Enterprise</span>
+                                <span class="lang-en hidden">Enterprise Wi-Fi Optimization</span>
+                                <span class="text-slate-900 dark:text-slate-200 font-semibold">92%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-950 h-1 rounded-full"><div class="bg-teal-500 h-full w-[92%] rounded-full"></div></div>
+                        </li>
+                        <li class="space-y-1">
+                            <div class="flex justify-between text-slate-500 dark:text-slate-400">
+                                <span class="lang-id">Administrasi Linux (Debian/Ubuntu)</span>
+                                <span class="lang-en hidden">Linux Admin (Debian/Ubuntu)</span>
+                                <span class="text-slate-900 dark:text-slate-200 font-semibold">88%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-950 h-1 rounded-full"><div class="bg-teal-500 h-full w-[88%] rounded-full"></div></div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Otomasi & Monitoring -->
+                <div class="bg-white dark:bg-slate-900/20 border border-slate-200 dark:border-slate-800 p-6 rounded-lg space-y-5 shadow-sm">
+                    <div class="flex items-center space-x-3 text-indigo-600 dark:text-indigo-400">
+                        <i data-lucide="activity" class="h-5 w-5"></i>
+                        <h3 class="font-bold text-slate-900 dark:text-slate-100">
+                            <span class="lang-id">Otomasi & Monitoring</span><span class="lang-en hidden">Automation & Monitoring</span>
+                        </h3>
+                    </div>
+                    <ul class="space-y-4 text-xs">
+                        <li class="space-y-1">
+                            <div class="flex justify-between text-slate-500 dark:text-slate-400">
+                                <span>Zabbix, The Dude & Grafana</span>
+                                <span class="text-slate-900 dark:text-slate-200 font-semibold">88%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-950 h-1 rounded-full"><div class="bg-indigo-500 h-full w-[88%] rounded-full"></div></div>
+                        </li>
+                        <li class="space-y-1">
+                            <div class="flex justify-between text-slate-500 dark:text-slate-400">
+                                <span class="lang-id">Otomasi Ansible, Python, Bash</span>
+                                <span class="lang-en hidden">Automation via Ansible, Python, Bash</span>
+                                <span class="text-slate-900 dark:text-slate-200 font-semibold">80%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-950 h-1 rounded-full"><div class="bg-indigo-500 h-full w-[80%] rounded-full"></div></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Pengalaman (Timeline Kerja) -->
+        <section id="pengalaman" class="scroll-mt-20 space-y-10">
+            <div class="space-y-2">
+                <h2 class="text-2xl font-bold tracking-tight text-slate-950 dark:text-white">
+                    <span class="lang-id">Perjalanan Karier Profesional</span><span class="lang-en hidden">Professional Career Path</span>
+                </h2>
+                <p class="text-slate-500 dark:text-slate-400 text-sm max-w-2xl">
+                    <span class="lang-id">Jejak rekam kontribusi nyata dalam mendesain arsitektur jaringan yang stabil selama lebih dari 5 tahun.</span>
+                    <span class="lang-en hidden">A record of tangible contributions in designing stable network architectures for over 5 years.</span>
+                </p>
+            </div>
+
+            <div class="max-w-3xl mx-auto relative border-l-2 border-slate-300 dark:border-slate-800 pl-6 sm:pl-8 space-y-10">
+                <!-- Pengalaman 1 -->
+                <div class="relative group">
+                    <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 h-3.5 w-3.5 rounded-full bg-blue-500 border-4 border-slate-5 border-slate-50 dark:border-[#090d16] group-hover:scale-125 transition-transform"></div>
+                    <div class="space-y-2">
+                        <span class="text-[11px] font-tech text-blue-600 dark:text-blue-400 font-semibold uppercase tracking-wider">
+                            <span class="lang-id">2023 - Sekarang</span><span class="lang-en hidden">2023 - Present</span>
+                        </span>
+                        <h3 class="text-base font-bold text-slate-900 dark:text-slate-100 flex flex-wrap items-center gap-2">
+                            <span>Network Engineer</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-slate-750 dark:text-slate-300 font-medium">Ops Networks</span>
+                        </h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+                            <span class="lang-id">Sebagai arsitek infrastruktur jaringan untuk 3 kantor cabang utama. Melakukan standarisasi core routing menggunakan platform MikroTik CCR dan Ruijie Distribution Fabric. Mengotomatiskan backup harian konfigurasi switch menggunakan skrip Ansible.</span>
+                            <span class="lang-en hidden">Served as network infrastructure team across 3 main headquarters. Standardizing core routing setups with MikroTik CCR and Ruijie Distribution Fabric platforms. Automated daily configurations backups using custom Ansible playbooks.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pengalaman 2 -->
+                <div class="relative group">
+                    <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 h-3.5 w-3.5 rounded-full bg-teal-500 border-4 border-slate-50 dark:border-[#090d16] group-hover:scale-125 transition-transform"></div>
+                    <div class="space-y-2">
+                        <span class="text-[11px] font-tech text-teal-600 dark:text-teal-400 font-semibold uppercase tracking-wider">2021 - 2023</span>
+                        <h3 class="text-base font-bold text-slate-900 dark:text-slate-100 flex flex-wrap items-center gap-2">
+                            <span>Customer Engineer</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-slate-750 dark:text-slate-300 font-medium">Troubleshooting & Installation</span>
+                        </h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+                            <span class="lang-id">Bertanggung jawab penuh atas migrasi jaringan Multi-WAN nirkabel menggunakan sistem TP-Link Omada dan integrasi UniFi Gateway. Berhasil menurunkan latensi inter-VLAN hingga 25% dan memastikan keandalan SLA jaringan pada batas 99.95%.</span>
+                            <span class="lang-en hidden">Fully responsible for Multi-WAN corporate wireless migrations utilizing TP-Link Omada system and UniFi Gateways. Successfully reduced inter-VLAN latency by 25% and maintained critical network uptime SLA at 99.95%.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pengalaman 3 -->
+                <div class="relative group">
+                    <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 h-3.5 w-3.5 rounded-full bg-indigo-500 border-4 border-slate-50 dark:border-[#090d16] group-hover:scale-125 transition-transform"></div>
+                    <div class="space-y-2">
+                        <span class="text-[11px] font-tech text-indigo-600 dark:text-indigo-400 font-semibold uppercase tracking-wider">
+                            <span class="lang-id">2020 (Awal Karier)</span><span class="lang-en hidden">2020 (Early Career)</span>
+                        </span>
+                        <h3 class="text-base font-bold text-slate-900 dark:text-slate-100 flex flex-wrap items-center gap-2">
+                            <span>Technical Support Consultant</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-slate-750 dark:text-slate-300 font-medium">Network Solutions</span>
+                        </h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+                            <span class="lang-id">Mendiagnosis dan memperbaiki masalah tingkat lanjut pada perangkat lunak, perangkat keras, server, dan jaringan.</span>
+                            <span class="lang-en hidden">Diagnose and repair advanced level problems in software, hardware, servers, and networks.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Sandbox Kalkulator Subnet (Fungsional) -->
+        <section id="kalkulator" class="scroll-mt-20 space-y-8">
+            <div class="space-y-2">
+                <h2 class="text-2xl font-bold tracking-tight text-slate-950 dark:text-white">
+                    <span class="lang-id">Kalkulator Subnet Jaringan</span><span class="lang-en hidden">Network Subnet Calculator</span>
+                </h2>
+                <p class="text-slate-500 dark:text-slate-400 text-sm max-w-2xl">
+                    <span class="lang-id">Alat bantu praktis untuk menghitung prefix CIDR, subnet mask, rentang IP host yang valid, serta alamat broadcast secara instan.</span>
+                    <span class="lang-en hidden">A practical utility to calculate CIDR prefixes, subnet masks, valid host IP ranges, and broadcast addresses instantly.</span>
+                </p>
+            </div>
+
+            <div class="max-w-2xl bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800/80 rounded-xl p-6 space-y-6 backdrop-blur-sm shadow-sm transition-colors duration-300">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-tech text-slate-500 dark:text-slate-400 mb-2">IP ADDRESS (IPv4)</label>
+                        <input type="text" id="calcIp" class="w-full bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded p-3 text-xs font-tech text-slate-800 dark:text-slate-100 focus:outline-none focus:border-blue-500" placeholder="e.g. 192.168.1.1">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-tech text-slate-500 dark:text-slate-400 mb-2">CIDR MASK (0-32)</label>
+                        <input type="number" id="calcCidr" min="0" max="32" class="w-full bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded p-3 text-xs font-tech text-slate-800 dark:text-slate-100 focus:outline-none focus:border-blue-500" placeholder="e.g. 24">
+                    </div>
+                </div>
+
+                <button onclick="calculateSubnet()" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded tracking-wide transition-all">
+                    <span class="lang-id">Analisis Subnet</span><span class="lang-en hidden">Analyze Subnet</span>
+                </button>
+
+                <!-- Hasil Kalkulasi Subnet -->
+                <div id="calcResult" class="hidden p-4 bg-slate-100 dark:bg-slate-950 rounded border border-slate-200 dark:border-slate-800/80 space-y-3 font-tech text-xs transition-colors duration-300">
+                    <div class="flex justify-between border-b border-slate-200 dark:border-slate-900 pb-2">
+                        <span class="text-slate-500 dark:text-slate-400">
+                            <span class="lang-id">Alamat Network:</span><span class="lang-en hidden">Network Address:</span>
+                        </span>
+                        <span id="resNetwork" class="text-emerald-600 dark:text-emerald-400 font-bold"></span>
+                    </div>
+                    <div class="flex justify-between border-b border-slate-200 dark:border-slate-900 pb-2">
+                        <span class="text-slate-500 dark:text-slate-400">Subnet Mask:</span>
+                        <span id="resMask" class="text-slate-800 dark:text-slate-100"></span>
+                    </div>
+                    <div class="flex justify-between border-b border-slate-200 dark:border-slate-900 pb-2">
+                        <span class="text-slate-500 dark:text-slate-400">
+                            <span class="lang-id">Rentang IP Usable (Host):</span><span class="lang-en hidden">Usable Host Range:</span>
+                        </span>
+                        <span id="resRange" class="text-slate-800 dark:text-slate-100"></span>
+                    </div>
+                    <div class="flex justify-between border-b border-slate-200 dark:border-slate-900 pb-2">
+                        <span class="text-slate-500 dark:text-slate-400">
+                            <span class="lang-id">Alamat Broadcast:</span><span class="lang-en hidden">Broadcast Address:</span>
+                        </span>
+                        <span id="resBroadcast" class="text-red-500 dark:text-red-400"></span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500 dark:text-slate-400">
+                            <span class="lang-id">Total Host yang Valid:</span><span class="lang-en hidden">Total Usable Hosts:</span>
+                        </span>
+                        <span id="resHosts" class="text-blue-600 dark:text-blue-400 font-bold"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Asisten AI (OpenRouter Terintegrasi) -->
+        <section id="asisten-ai" class="scroll-mt-20 space-y-8">
+            <div class="space-y-2">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-tech">
+                    <span class="h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse"></span>
+                    <span>AI ENGINE</span>
+                </div>
+                <h2 class="text-2xl font-bold tracking-tight text-slate-950 dark:text-white">
+                    <span class="lang-id">Asisten Jaringan AI Cerdas</span><span class="lang-en hidden">Intelligent AI Network Assistant</span>
+                </h2>
+                <p class="text-slate-500 dark:text-slate-400 text-sm max-w-2xl">
+                    <span class="lang-id">Konsultasikan kebutuhan desain topologi jaringan atau analisis pesan error / log sistem secara interaktif menggunakan AI buatan Ilham.</span>
+                    <span class="lang-en hidden">Consult network topology design needs or analyze error messages / system logs interactively using Ilham's AI.</span>
+                </p>
+            </div>
+
+            <div class="max-w-3xl bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800/80 rounded-xl p-6 space-y-5 backdrop-blur-sm shadow-sm transition-colors duration-300">
+
+                <!-- Scenario & Vendor Row -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase">
+                            <span class="lang-id">Skenario</span><span class="lang-en hidden">Scenario</span>
+                        </label>
+                        <select id="aiScenario" class="w-full bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded p-2.5 text-xs font-semibold text-slate-800 dark:text-slate-200 focus:outline-none focus:border-blue-500">
+                            <option value="design_consult" data-id="🏗️ Konsultasi Arsitektur" data-en="🏗️ Architecture Consultation">🏗️ Konsultasi Arsitektur</option>
+                            <option value="troubleshoot" data-id="🔧 Troubleshooting & Log" data-en="🔧 Troubleshooting & Log">🔧 Troubleshooting & Log</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase">
+                            <span class="lang-id">Vendor</span><span class="lang-en hidden">Vendor</span>
+                        </label>
+                        <select id="aiVendor" class="w-full bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded p-2.5 text-xs font-semibold text-slate-800 dark:text-slate-200 focus:outline-none focus:border-blue-500">
+                            <option value="All Vendors" data-id="Semua Vendor" data-en="All Vendors">Semua Vendor</option>
+                            <option value="MikroTik" data-id="MikroTik" data-en="MikroTik">MikroTik</option>
+                            <option value="Ruijie" data-id="Ruijie" data-en="Ruijie">Ruijie</option>
+                            <option value="Ubiquiti UniFi" data-id="Ubiquiti UniFi" data-en="Ubiquiti UniFi">Ubiquiti UniFi</option>
+                            <option value="TP-Link Omada" data-id="TP-Link Omada" data-en="TP-Link Omada">TP-Link Omada</option>
+                            <option value="Linux Systems" data-id="Sistem Linux" data-en="Linux Systems">Sistem Linux</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Prompt Input -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase">
+                        <span class="lang-id">Masukkan Kebutuhan / Pesan Error / Deskripsi Jaringan</span>
+                        <span class="lang-en hidden">Enter Requirements / Error Log / Network Description</span>
+                    </label>
+                    <textarea id="aiPrompt" rows="5" class="w-full bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded p-3 text-xs font-tech text-slate-800 dark:text-slate-100 focus:outline-none focus:border-blue-500 resize-none" placeholder="Contoh: Rancang topologi Wi-Fi untuk gedung 3 lantai dengan 150 pengguna, pisahkan tamu dan staf..." data-placeholder-id="Contoh: Rancang topologi Wi-Fi untuk gedung 3 lantai dengan 150 pengguna, pisahkan tamu dan staf..." data-placeholder-en="Example: Design a Wi-Fi topology for a 3-floor building with 150 users, separate guest and staff networks..."></textarea>
+                </div>
+
+                <button onclick="getAIAdvice()" class="w-full py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-xs font-semibold rounded tracking-wide transition-all flex items-center justify-center space-x-2 shadow-md">
+                    <i data-lucide="sparkles" class="h-4 w-4"></i>
+                    <span class="lang-id">Kirim ke Asisten Jaringan AI</span>
+                    <span class="lang-en hidden">Submit to AI Network Assistant</span>
+                </button>
+
+                <!-- Indikator Loading -->
+                <div id="aiLoading" class="hidden flex flex-col items-center justify-center py-8 space-y-3">
+                    <div class="h-8 w-8 rounded-full border-4 border-slate-200 border-t-blue-600 animate-spin"></div>
+                    <span class="text-xs font-tech text-slate-400 animate-pulse">
+                        <span class="lang-id">Proses AI... Harap tunggu.</span>
+                        <span class="lang-en hidden">AI Process... Please wait.</span>
+                    </span>
+                </div>
+
+                <!-- Hasil Output AI -->
+                <div id="aiResultBox" class="hidden p-5 bg-slate-100 dark:bg-slate-950 rounded border border-slate-200 dark:border-slate-800/80 transition-colors duration-300">
+                    <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-900 pb-3 mb-4">
+                        <span class="text-xs font-bold text-blue-600 dark:text-blue-400 flex items-center gap-1.5">
+                            <i data-lucide="sparkles" class="h-3.5 w-3.5"></i>
+                            <span class="lang-id">Rekomendasi AI Asisten Ilhamsyah</span>
+                            <span class="lang-en hidden">AI Recommendation — Ilhamsyah</span>
+                        </span>
+                        <button onclick="copyAIResult()" class="text-[10px] font-tech text-slate-400 hover:text-blue-500 flex items-center gap-1 transition-colors">
+                            <i data-lucide="copy" class="h-3 w-3"></i>
+                            <span class="lang-id">Salin</span><span class="lang-en hidden">Copy</span>
+                        </button>
+                    </div>
+                    <div id="aiResultContent" class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-line overflow-x-auto">
+                        <!-- Output diisi oleh JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Proyek -->
+        <section id="proyek" class="scroll-mt-20 max-w-6xl mx-auto space-y-10">
+            <div class="text-center space-y-3">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">
+                    <span class="lang-id">Proyek Saya</span><span class="lang-en hidden">My Projects</span>
+                </h2>
+                <p class="text-slate-500 dark:text-slate-400 max-w-xl mx-auto text-sm">
+                    <span class="lang-id">Kumpulan proyek yang telah saya kerjakan di bidang jaringan dan infrastruktur IT.</span>
+                    <span class="lang-en hidden">A collection of projects I've worked on in networking and IT infrastructure.</span>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Card Proyek 1 — ganti sesuai project kamu -->
+                <div onclick="goToProject('jaringan-kampus')" class="group cursor-pointer bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 rounded-xl p-6 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="p-2.5 rounded-lg bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400">
+                            <i data-lucide="network" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-xs font-tech text-slate-400 dark:text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full">2024</span>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 dark:text-white mb-2 group-hover:text-blue-500 transition-colors">
+                        <span class="lang-id">Jaringan Kampus</span><span class="lang-en hidden">Campus Network</span>
+                    </h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
+                        <span class="lang-id">Perancangan dan implementasi jaringan kampus skala enterprise dengan topologi redundant.</span>
+                        <span class="lang-en hidden">Design and implementation of enterprise-scale campus network with redundant topology.</span>
+                    </p>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="text-xs font-tech px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">MikroTik</span>
+                        <span class="text-xs font-tech px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">OSPF</span>
+                        <span class="text-xs font-tech px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">VLAN</span>
+                    </div>
+                    <div class="mt-4 flex items-center text-xs text-blue-500 dark:text-blue-400 font-medium group-hover:gap-2 gap-1 transition-all">
+                        <span class="lang-id">Lihat Detail</span><span class="lang-en hidden">View Detail</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    </div>
+                </div>
+
+                <!-- Card Proyek 2 -->
+                <div onclick="goToProject('monitoring-nms')" class="group cursor-pointer bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 rounded-xl p-6 hover:border-teal-400 dark:hover:border-teal-500 hover:shadow-lg hover:shadow-teal-500/10 transition-all duration-300">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="p-2.5 rounded-lg bg-teal-50 dark:bg-teal-500/10 text-teal-600 dark:text-teal-400">
+                            <i data-lucide="activity" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-xs font-tech text-slate-400 dark:text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full">2024</span>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 dark:text-white mb-2 group-hover:text-teal-500 transition-colors">
+                        <span class="lang-id">Monitoring NMS</span><span class="lang-en hidden">NMS Monitoring</span>
+                    </h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
+                        <span class="lang-id">Implementasi sistem monitoring jaringan terpusat menggunakan The Dude dan Zabbix.</span>
+                        <span class="lang-en hidden">Implementation of centralized network monitoring system using The Dude and Zabbix.</span>
+                    </p>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="text-xs font-tech px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">Zabbix</span>
+                        <span class="text-xs font-tech px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">The Dude</span>
+                        <span class="text-xs font-tech px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">SNMP</span>
+                    </div>
+                    <div class="mt-4 flex items-center text-xs text-teal-500 dark:text-teal-400 font-medium group-hover:gap-2 gap-1 transition-all">
+                        <span class="lang-id">Lihat Detail</span><span class="lang-en hidden">View Detail</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    </div>
+                </div>
+
+                <!-- Card Proyek 3 -->
+                <div onclick="goToProject('vpn-site-to-site')" class="group cursor-pointer bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 rounded-xl p-6 hover:border-purple-400 dark:hover:border-purple-500 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="p-2.5 rounded-lg bg-purple-50 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400">
+                            <i data-lucide="shield-check" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-xs font-tech text-slate-400 dark:text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full">2023</span>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 dark:text-white mb-2 group-hover:text-purple-500 transition-colors">
+                        <span class="lang-id">VPN Site-to-Site</span><span class="lang-en hidden">Site-to-Site VPN</span>
+                    </h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
+                        <span class="lang-id">Konfigurasi tunnel VPN IPSec antar kantor cabang untuk keamanan komunikasi data.</span>
+                        <span class="lang-en hidden">IPSec VPN tunnel configuration between branch offices for secure data communication.</span>
+                    </p>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="text-xs font-tech px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">IPSec</span>
+                        <span class="text-xs font-tech px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">MikroTik</span>
+                        <span class="text-xs font-tech px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate:400">Tunnel</span>
+                    </div>
+                    <div class="mt-4 flex items-center text-xs text-purple-500 dark:text-purple-400 font-medium group-hover:gap-2 gap-1 transition-all">
+                        <span class="lang-id">Lihat Detail</span><span class="lang-en hidden">View Detail</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section Kontak -->
+        <section id="kontak" class="scroll-mt-20 max-w-4xl mx-auto space-y-10">
+            <div class="space-y-2 text-center">
+                <h2 class="text-2xl font-bold tracking-tight text-slate-950 dark:text-white">
+                    <span class="lang-id">Hubungi Saya</span><span class="lang-en hidden">Contact Me</span>
+                </h2>
+                <p class="text-slate-500 dark:text-slate-400 text-sm max-w-xl mx-auto">
+                    <span class="lang-id">Ada tantangan infrastruktur baru, migrasi sistem terhambat, atau butuh jasa profesional lainnya? Kirimkan pesan Anda.</span>
+                    <span class="lang-en hidden">Facing a new infrastructure project, migration bottleneck, or in need of expert advice? Open a communication path here.</span>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+                <!-- Kontak Informasi Ringkas -->
+                <div class="md:col-span-2 space-y-4">
+                    <div class="p-4 bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center space-x-4 shadow-sm transition-colors duration-300">
+                        <div class="h-9 w-9 bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="mail" class="h-4 w-4"></i>
+                        </div>
+                        <div>
+                            <span class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase">
+                                <span class="lang-id">Alamat Email</span><span class="lang-en hidden">Email Address</span>
+                            </span>
+                            <a href="mailto:ilhamsyah072002@gmail.com" class="text-slate-800 dark:text-slate-200 hover:text-blue-500 dark:hover:text-blue-400 text-xs font-semibold">ilhamsyah072002@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center space-x-4 shadow-sm transition-colors duration-300">
+                        <div class="h-9 w-9 bg-teal-500/10 text-teal-600 dark:text-teal-400 rounded flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="map-pin" class="h-4 w-4"></i>
+                        </div>
+                        <div>
+                            <span class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase">
+                                <span class="lang-id">Lokasi Domisili</span><span class="lang-en hidden">Location</span>
+                            </span>
+                            <span class="text-slate-800 dark:text-slate-200 text-xs font-semibold">
+                                <span class="lang-id">Jakarta Barat, DKI Jakarta</span><span class="lang-en hidden">West Jakarta, Indonesia</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800 rounded-lg flex items-center space-x-4 shadow-sm transition-colors duration-300">
+                        <div class="h-9 w-9 bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 rounded flex items-center justify-center flex-shrink-0">
+                            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                        </div>
+                        <div>
+                            <span class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase">
+                                <span class="lang-id">Profil GitHub</span><span class="lang-en hidden">GitHub Profile</span>
+                            </span>
+                            <a href="https://www.linkedin.com/in/ilhamsyah07/" class="text-slate-800 dark:text-slate-200 hover:text-blue-500 dark:hover:text-blue-400 text-xs font-semibold">github.com/ilhamsyah07</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulir Hubungi Saya (Web3Forms Terintegrasi) -->
+                <div class="md:col-span-3 bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm transition-colors duration-300">
+                    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
+                        <!-- Silakan ganti nilai 'your_web3forms_access_key' dengan Kunci Akses Web3Forms asli Anda -->
+                        <input type="hidden" name="access_key" value="13fa5cde-6d0d-4c74-b115-e4e787a1ee0b">
+                        <!-- Opsional: Menambahkan nama pengirim default di subjek email -->
+                        <input type="hidden" name="from_name" value="Portfolio Ilhamsyah">
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 mb-1">
+                                    <span class="lang-id">NAMA LENGKAP</span><span class="lang-en hidden">FULL NAME</span>
+                                </label>
+                                <input type="text" id="contactName" name="name" required class="w-full bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded p-2.5 text-xs text-slate-800 dark:text-slate-100 focus:outline-none focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 mb-1">
+                                    <span class="lang-id">ALAMAT EMAIL</span><span class="lang-en hidden">EMAIL ADDRESS</span>
+                                </label>
+                                <input type="email" id="contactEmail" name="email" required class="w-full bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded p-2.5 text-xs text-slate-800 dark:text-slate-100 focus:outline-none focus:border-blue-550">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 mb-1">
+                                <span class="lang-id">SUBJEK PESAN</span><span class="lang-en hidden">MESSAGE SUBJECT</span>
+                            </label>
+                            <input type="text" id="contactSubject" name="subject" required class="w-full bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded p-2.5 text-xs text-slate-800 dark:text-slate-100 focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 mb-1">
+                                <span class="lang-id">DESKRIPSI PESAN</span><span class="lang-en hidden">MESSAGE DESCRIPTION</span>
+                            </label>
+                            <textarea id="contactMessage" name="message" rows="3" required class="w-full bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded p-2.5 text-xs text-slate-800 dark:text-slate-100 focus:outline-none focus:border-blue-500"></textarea>
+                        </div>
+                        <button type="submit" id="contactSubmitBtn" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded tracking-wide transition-all flex items-center justify-center space-x-2">
+                            <span class="lang-id" id="submitBtnTextId">Kirim Pesan</span>
+                            <span class="lang-en hidden" id="submitBtnTextEn">Send Message</span>
+                            <i data-lucide="send" class="h-3.5 w-3.5"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Notifikasi Toast Berhasil Kirim -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-12 opacity-0 pointer-events-none transition-all duration-300 max-w-sm bg-white dark:bg-slate-900 border border-emerald-500/50 p-4 rounded-lg flex items-start space-x-3 shadow-2xl">
+        <div class="h-8 w-8 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0">
+            <i data-lucide="check-circle" class="h-4 w-4"></i>
+        </div>
+        <div class="flex-1 space-y-0.5">
+            <span class="block text-xs font-bold text-slate-955 dark:text-slate-100">
+                <span class="lang-id" id="toastTitleId">Transmisi Berhasil!</span>
+                <span class="lang-en hidden" id="toastTitleEn">Transmission Complete!</span>
+            </span>
+            <span class="block text-[11px] text-slate-550 dark:text-slate-400" id="toastMessage">
+                <span class="lang-id">Paket pesan terkirim dengan aman ke server utama kami.</span>
+                <span class="lang-en hidden">Message payload securely routed to our primary endpoint.</span>
+            </span>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#090d16] py-6 relative z-10 transition-colors duration-300">
+        <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+            <span class="text-slate-500 dark:text-slate-500 font-tech">
+                <span class="lang-id">DIDESAIN & DIKEMBANGKAN OLEH ILHAMSYAH // © 2026</span>
+                <span class="lang-en hidden">DESIGNED & DEVELOPED BY ILHAMSYAH // © 2026</span>
+            </span>
+            <div class="flex items-center space-x-2 text-slate-500 dark:text-slate-400">
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="font-tech text-[10px]">
+                    <span class="lang-id">SISTEM ONLINE & NORMAL</span><span class="lang-en hidden">SYSTEM ONLINE & NORMAL</span>
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Restorasi tema dari localStorage
+        (function() {
+            const saved = localStorage.getItem('theme');
+            if (saved === 'light') {
+                document.documentElement.classList.remove('dark');
+            } else {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+
+        // Handle redirect dari 404.html (saat user refresh di URL seperti /kontak)
+        (function() {
+            const redirect = sessionStorage.getItem('redirect');
+            if (redirect) {
+                sessionStorage.removeItem('redirect');
+                const sectionId = redirect.replace('/', '').trim();
+                if (sectionId) {
+                    setTimeout(() => {
+                        const target = document.getElementById(sectionId);
+                        if (target) {
+                            const headerOffset = 72;
+                            const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+                            window.scrollTo({ top, behavior: 'smooth' });
+                            history.replaceState(null, '', '/' + sectionId);
+                        }
+                    }, 100);
+                }
+            }
+        })();
+
+        // Memulai Instansiasi Lucide Icons
+        lucide.createIcons();
+
+        // Navigasi ke halaman detail project
+        function goToProject(slug) {
+            history.pushState(null, '', '/projects/' + slug);
+            window.location.href = '/projects/' + slug + '.html';
+        }
+
+        // Smooth Scroll – mencegah tanda # muncul di URL saat menu diklik
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href').slice(1);
+                if (!targetId) return;
+                const target = document.getElementById(targetId);
+                if (target) {
+                    e.preventDefault();
+                    const headerOffset = 72; // tinggi header fixed
+                    const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                    history.pushState(null, '', '/' + targetId);
+                }
+            });
+        });
+
+        // Operasional Menu Mobile
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        function closeMenu() {
+            mobileMenu.classList.add('hidden');
+        }
+
+        // Variabel Status Navigasi & Aplikasi
+        let currentLang = 'id'; // Bahasa default
+
+        // Fungsi Peralihan Bahasa (ID & EN)
+        function toggleLanguage() {
+            currentLang = currentLang === 'id' ? 'en' : 'id';
+
+            const listId = document.querySelectorAll('.lang-id');
+            const listEn = document.querySelectorAll('.lang-en');
+
+            if (currentLang === 'id') {
+                listId.forEach(el => el.classList.remove('hidden'));
+                listEn.forEach(el => el.classList.add('hidden'));
+                document.getElementById('langLabel').innerText = 'EN';
+                document.getElementById('langLabelMobile').innerText = 'EN';
+            } else {
+                listId.forEach(el => el.classList.add('hidden'));
+                listEn.forEach(el => el.classList.remove('hidden'));
+                document.getElementById('langLabel').innerText = 'ID';
+                document.getElementById('langLabelMobile').innerText = 'ID';
+            }
+
+            // Ganti placeholder elemen yang punya data-placeholder-id/en
+            document.querySelectorAll('[data-placeholder-id]').forEach(el => {
+                el.placeholder = currentLang === 'id'
+                    ? el.dataset.placeholderId
+                    : el.dataset.placeholderEn;
+            });
+            
+            // Ganti teks option select yang punya data-id/en
+            document.querySelectorAll('option[data-id]').forEach(opt => {
+                opt.textContent = currentLang === 'id'
+                    ? opt.dataset.id
+                    : opt.dataset.en;
+            });
+        }
+
+        // Fungsi Peralihan Tema (Dark & Light Mode)
+        function toggleTheme() {
+            const htmlElement = document.documentElement;
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Fungsi Kalkulasi Subnet IPv4
+        function calculateSubnet() {
+            const ipVal = document.getElementById('calcIp').value.trim() || '192.168.1.1';
+            const cidrVal = parseInt(document.getElementById('calcCidr').value) || 24;
+
+            if (isNaN(cidrVal) || cidrVal < 0 || cidrVal > 32) {
+                if (currentLang === 'id') {
+                    showToast("Format CIDR tidak valid (0 - 32 saja)", "error");
+                } else {
+                    showToast("Invalid CIDR format (0 - 32 only)", "error");
+                }
+                return;
+            }
+
+            const ipParts = ipVal.split('.').map(Number);
+            if (ipParts.length !== 4 || ipParts.some(isNaN) || ipParts.some(p => p < 0 || p > 255)) {
+                if (currentLang === 'id') {
+                    showToast("Format alamat IPv4 tidak valid", "error");
+                } else {
+                    showToast("Invalid IPv4 address format", "error");
+                }
+                return;
+            }
+
+            // Ubah format string IP ke representasi 32-bit Integer
+            const ipInt = (ipParts[0] << 24) >>> 0 | (ipParts[1] << 16) >>> 0 | (ipParts[2] << 8) >>> 0 | ipParts[3];
+            
+            // Tentukan subnet mask
+            const maskInt = cidrVal === 0 ? 0 : (~0 << (32 - cidrVal)) >>> 0;
+            const networkInt = (ipInt & maskInt) >>> 0;
+            const broadcastInt = (networkInt | ~maskInt) >>> 0;
+
+            const formatIp = (num) => [
+                (num >>> 24) & 255,
+                (num >>> 16) & 255,
+                (num >>> 8) & 255,
+                num & 255
+            ].join('.');
+
+            const totalHosts = cidrVal >= 31 ? 0 : Math.pow(2, 32 - cidrVal) - 2;
+
+            document.getElementById('resNetwork').innerText = formatIp(networkInt);
+            document.getElementById('resMask').innerText = formatIp(maskInt);
+            document.getElementById('resBroadcast').innerText = formatIp(broadcastInt);
+            document.getElementById('resHosts').innerText = totalHosts.toLocaleString();
+            document.getElementById('resRange').innerText = cidrVal >= 31 
+                ? 'N/A' 
+                : `${formatIp(networkInt + 1)} - ${formatIp(broadcastInt - 1)}`;
+
+            document.getElementById('calcResult').classList.remove('hidden');
+
+            if (currentLang === 'id') {
+                showToast("Hasil subnetting berhasil diperbarui!");
+            } else {
+                showToast("Subnet calculation updated successfully!");
+            }
+        }
+
+        // ── OpenRouter AI Integration ──────────────────────────────────────────
+        const OPENROUTER_API_KEY = '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';
+        const OPENROUTER_MODEL = 'openrouter/auto';
+
+        async function getAIAdvice() {
+            const userPrompt = document.getElementById('aiPrompt').value.trim();
+            if (!userPrompt) {
+                if (currentLang === 'id') {
+                    showToast("Harap ketik deskripsi atau pesan error terlebih dahulu!", "error");
+                } else {
+                    showToast("Please write a description or error message first!", "error");
+                }
+                return;
+            }
+
+            const scenario = document.getElementById('aiScenario').value;
+            const preferredVendor = document.getElementById('aiVendor').value;
+
+            let systemPrompt = '';
+            if (scenario === 'design_consult') {
+                systemPrompt = `Anda adalah asisten AI dari Ilhamsyah, seorang Senior Systems & Network Infrastructure Engineer berpengalaman 5 tahun. Gunakan preferensi vendor: ${preferredVendor}. Bantu rancang arsitektur topologi jaringan yang bersih, terperinci, efisien, aman, dan sertakan rekomendasi VLAN atau subnet. Sesuaikan bahasa jawaban dengan bahasa pengguna (Indonesia atau Inggris). Format jawaban dalam markdown yang rapi.`;
+            } else {
+                systemPrompt = `Anda adalah asisten AI dari Ilhamsyah, seorang Senior Systems & Network Infrastructure Engineer. Gunakan preferensi vendor/teknologi: ${preferredVendor}. Analisis log sistem atau pesan error jaringan. Berikan langkah troubleshooting logis berdasarkan OSI Layer atau metodologi industri (Cisco/MikroTik). Sesuaikan bahasa dengan pengguna (Indonesia atau Inggris). Format markdown yang rapi.`;
+            }
+
+            document.getElementById('aiLoading').classList.remove('hidden');
+            document.getElementById('aiResultBox').classList.add('hidden');
+
+            try {
+                await callOpenRouterAPI(userPrompt, systemPrompt);
+                lucide.createIcons();
+                if (currentLang === 'id') {
+                    showToast("Rekomendasi asisten AI berhasil dibuat!");
+                } else {
+                    showToast("AI Assistant recommendation ready!");
+                }
+            } catch (error) {
+                const msg = error.message || 'Unknown error';
+                if (currentLang === 'id') {
+                    showToast(`Gagal: ${msg}`, "error");
+                } else {
+                    showToast(`Failed: ${msg}`, "error");
+                }
+            } finally {
+                document.getElementById('aiLoading').classList.add('hidden');
+            }
+        }
+
+        async function callOpenRouterAPI(prompt, systemInstruction) {
+            const siteUrl = (window.location.hostname && window.location.hostname !== '')
+                ? window.location.origin
+                : 'https://ilhamsyah.portfolio';
+
+            let response;
+            try {
+                response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
+                        'Content-Type': 'application/json',
+                        'HTTP-Referer': siteUrl,
+                        'X-Title': 'Ilhamsyah Network Portfolio'
+                    },
+                    body: JSON.stringify({
+                        model: OPENROUTER_MODEL,
+                        stream: true,
+                        messages: [
+                            { role: 'system', content: systemInstruction },
+                            { role: 'user', content: prompt }
+                        ],
+                        max_tokens: 8192
+                    })
+                });
+            } catch (networkErr) {
+                throw new Error('Tidak dapat terhubung ke OpenRouter. Periksa koneksi internet Anda.');
+            }
+
+            if (!response.ok) {
+                let errMsg = 'HTTP ' + response.status;
+                try {
+                    const err = await response.json();
+                    errMsg = err.error?.message || err.message || errMsg;
+                } catch (_) {}
+                throw new Error(errMsg);
+            }
+
+            // Streaming: tampilkan teks langsung saat datang
+            const resultBox = document.getElementById('aiResultBox');
+            const resultContent = document.getElementById('aiResultContent');
+            resultBox.classList.remove('hidden');
+            resultContent.innerHTML = '';
+
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+            let fullText = '';
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+
+                const chunk = decoder.decode(value, { stream: true });
+                const lines = chunk.split('\n');
+
+                for (const line of lines) {
+                    if (!line.startsWith('data: ')) continue;
+                    const data = line.slice(6).trim();
+                    if (data === '[DONE]') break;
+                    try {
+                        const parsed = JSON.parse(data);
+                        const delta = parsed.choices?.[0]?.delta?.content || '';
+                        if (delta) {
+                            fullText += delta;
+                            resultContent.innerHTML = parseSimpleMarkdown(fullText);
+                        }
+                    } catch (_) {}
+                }
+            }
+
+            if (!fullText) throw new Error('Respons kosong dari OpenRouter.');
+            return fullText;
+        }
+        // Parser Markdown Sederhana agar output rapi di HTML
+        function parseSimpleMarkdown(text) {
+            let html = text;
+            // Heading H3 (###)
+            html = html.replace(/^### (.+)$/gm, '<h3 class="text-sm font-bold text-slate-800 dark:text-slate-100 mt-4 mb-1">$1</h3>');
+            // Heading H2 (##)
+            html = html.replace(/^## (.+)$/gm, '<h2 class="text-base font-bold text-blue-600 dark:text-blue-400 mt-5 mb-2">$1</h2>');
+            // Heading H1 (#)
+            html = html.replace(/^# (.+)$/gm, '<h1 class="text-lg font-extrabold text-slate-900 dark:text-white mt-5 mb-2">$1</h1>');
+            // Bold (**teks**)
+            html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            // Italic (*teks*)
+            html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            // Kode inline (`kode`)
+            html = html.replace(/`(.*?)`/g, '<code class="bg-slate-200 dark:bg-slate-900 px-1.5 py-0.5 rounded text-blue-600 dark:text-blue-400 text-xs">$1</code>');
+            // List item (- item)
+            html = html.replace(/^- (.+)$/gm, '<li class="ml-4 list-disc text-slate-600 dark:text-slate-300">$1</li>');
+            // Baris baru → <br> (hanya untuk baris kosong)
+            html = html.replace(/\n\n/g, '<br><br>');
+            return html;
+        }
+
+        // Salin output AI ke papan klip
+        function copyAIResult() {
+            const content = document.getElementById('aiResultContent').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = content;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            if (currentLang === 'id') {
+                showToast("Hasil disalin ke papan klip!");
+            } else {
+                showToast("Results copied to clipboard!");
+            }
+        }
+
+        // Fungsi Pop-Up Toast Terintegrasi
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMessage');
+            const toastTitleId = document.getElementById('toastTitleId');
+            const toastTitleEn = document.getElementById('toastTitleEn');
+            
+            toastMsg.innerText = message;
+            if (type === 'error') {
+                toast.classList.remove('border-emerald-500/50');
+                toast.classList.add('border-red-500/50');
+                if (currentLang === 'id') {
+                    toastTitleId.innerText = "Transmisi Gagal!";
+                    toastTitleId.classList.remove('hidden');
+                    toastTitleEn.classList.add('hidden');
+                } else {
+                    toastTitleEn.innerText = "Transmission Failed!";
+                    toastTitleEn.classList.remove('hidden');
+                    toastTitleId.classList.add('hidden');
+                }
+            } else {
+                toast.classList.remove('border-red-500/50');
+                toast.classList.add('border-emerald-500/50');
+                if (currentLang === 'id') {
+                    toastTitleId.innerText = "Transmisi Berhasil!";
+                    toastTitleId.classList.remove('hidden');
+                    toastTitleEn.classList.add('hidden');
+                } else {
+                    toastTitleEn.innerText = "Transmission Complete!";
+                    toastTitleEn.classList.remove('hidden');
+                    toastTitleId.classList.add('hidden');
+                }
+            }
+
+            toast.classList.remove('translate-y-12', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-12', 'opacity-0', 'pointer-events-none');
+                toast.classList.remove('translate-y-0', 'opacity-100');
+            }, 3500);
+        }
+
+        // Integrasi Pengiriman Web3Forms melalui AJAX JSON (Lebih Aman & Bebas Blokir Iframe)
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const actionUrl = form.action;
+            const submitBtn = document.getElementById('contactSubmitBtn');
+            const submitBtnTextId = document.getElementById('submitBtnTextId');
+            const submitBtnTextEn = document.getElementById('submitBtnTextEn');
+            
+            // Validasi apakah pengguna masih menggunakan Access Key placeholder
+            const accessKeyInput = form.querySelector('input[name="access_key"]');
+            if (accessKeyInput && accessKeyInput.value.includes('your_web3forms_access_key')) {
+                if (currentLang === 'id') {
+                    showToast("Formulir belum siap dikirim! Harap ganti value 'your_web3forms_access_key' pada kode HTML Anda dengan Access Key Web3Forms asli Anda.", "error");
+                } else {
+                    showToast("Form not ready! Please replace 'your_web3forms_access_key' in the HTML code with your actual Web3Forms Access Key.", "error");
+                }
+                return;
+            }
+
+            // Ubah tombol menjadi mode pengiriman
+            submitBtn.disabled = true;
+            if (currentLang === 'id') {
+                submitBtnTextId.innerText = "Mengirim...";
+            } else {
+                submitBtnTextEn.innerText = "Sending...";
+            }
+
+            const formData = new FormData(form);
+            
+            // Konversi FormData ke Object untuk payload JSON murni (Menghindari penolakan iframe oleh Web3Forms)
+            const object = {};
+            formData.forEach((value, key) => {
+                object[key] = value;
+            });
+            const jsonPayload = JSON.stringify(object);
+
+            try {
+                const response = await fetch(actionUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: jsonPayload
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    const name = document.getElementById('contactName').value;
+                    if (currentLang === 'id') {
+                        showToast(`Terima kasih, ${name}! Pesan Anda berhasil terkirim.`);
+                    } else {
+                        showToast(`Thank you, ${name}! Your message was successfully sent.`);
+                    }
+                    form.reset();
+                } else {
+                    // Dapatkan pesan kesalahan terperinci dari API Web3Forms untuk di-debug pengguna
+                    const errorMessage = data.message ? data.message : "Pengiriman ditolak oleh Web3Forms.";
+                    throw new Error(errorMessage);
+                }
+            } catch (error) {
+                if (currentLang === 'id') {
+                    showToast(`Gagal mengirim: ${error.message}`, "error");
+                } else {
+                    showToast(`Failed to send: ${error.message}`, "error");
+                }
+            } finally {
+                // Kembalikan tombol seperti semula
+                submitBtn.disabled = false;
+                if (currentLang === 'id') {
+                    submitBtnTextId.innerText = "Kirim Pesan";
+                } else {
+                    submitBtnTextEn.innerText = "Send Message";
+                }
+            }
+        });
+    </script>
+</body>
+</html>

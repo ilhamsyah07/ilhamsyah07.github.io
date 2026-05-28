@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script>
+    // Simpan path yang diminta, lalu redirect ke index.html
+    const path = window.location.pathname;
+    sessionStorage.setItem('redirect', path);
+    window.location.replace('/');
+  </script>
+</head>
+<body></body>
+</html>
