@@ -845,9 +845,9 @@
                             <label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 mb-1">
                                 <span class="lang-id">DESKRIPSI PESAN</span><span class="lang-en hidden">MESSAGE DESCRIPTION</span>
                             </label>
-                            <textarea id="contactMessage" name="message" rows="3" required class="w-full bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded p-2.5 text-xs text-slate-800 dark:text-slate-100 focus:outline-none focus:border-blue-500"></textarea>
+                            <textarea id="contactMessage" name="message" rows="3" class="w-full bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded p-2.5 text-xs text-slate-800 dark:text-slate-100 focus:outline-none focus:border-blue-500"></textarea>
                         </div>
-                        <button type="submit" id="contactSubmitBtn" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded tracking-wide transition-all flex items-center justify-center space-x-2">
+                        <button type="submit" id="contactSubmitBtn" disabled class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded tracking-wide transition-all flex items-center justify-center space-x-2 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-blue-600">
                             <span class="lang-id" id="submitBtnTextId">Kirim Pesan</span>
                             <span class="lang-en hidden" id="submitBtnTextEn">Send Message</span>
                             <i data-lucide="send" class="h-3.5 w-3.5"></i>
@@ -1295,7 +1295,30 @@
                 toast.classList.remove('translate-y-0', 'opacity-100');
             }, 3500);
         }
+            // Validasi Real-Time: Tombol Kirim hanya aktif jika Nama, Email, dan Subjek terisi valid
+            (function() {
+                const nameInput = document.getElementById('contactName');
+                const emailInput = document.getElementById('contactEmail');
+                const subjectInput = document.getElementById('contactSubject');
+                const submitBtn = document.getElementById('contactSubmitBtn');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+                function validateContactForm() {
+                    const isValid =
+                        nameInput.value.trim() !== '' &&
+                        emailRegex.test(emailInput.value.trim()) &&
+                        subjectInput.value.trim() !== '';
+                    submitBtn.disabled = !isValid;
+                }
 
+                [nameInput, emailInput, subjectInput].forEach(input => {
+                    input.addEventListener('input', validateContactForm);
+                });
+
+            // Cek kondisi awal (misalnya jika browser mengisi otomatis/autofill)
+            validateContactForm();
+        })();
+        
         // Integrasi Pengiriman Web3Forms melalui AJAX JSON (Lebih Aman & Bebas Blokir Iframe)
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -1305,6 +1328,33 @@
             const submitBtn = document.getElementById('contactSubmitBtn');
             const submitBtnTextId = document.getElementById('submitBtnTextId');
             const submitBtnTextEn = document.getElementById('submitBtnTextEn');
+
+            // Validasi Nama, Email, dan Subjek (Deskripsi bersifat opsional)
+            const nameVal = document.getElementById('contactName').value.trim();
+            const emailVal = document.getElementById('contactEmail').value.trim();
+            const subjectVal = document.getElementById('contactSubject').value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!nameVal) {
+                showToast(currentLang === 'id' ? "Nama lengkap wajib diisi." : "Full name is required.", "error");
+                document.getElementById('contactName').focus();
+                return;
+            }
+            if (!emailVal) {
+                showToast(currentLang === 'id' ? "Alamat email wajib diisi." : "Email address is required.", "error");
+                document.getElementById('contactEmail').focus();
+                return;
+            }
+            if (!emailRegex.test(emailVal)) {
+                showToast(currentLang === 'id' ? "Format alamat email tidak valid." : "Email address format is invalid.", "error");
+                document.getElementById('contactEmail').focus();
+                return;
+            }
+            if (!subjectVal) {
+                showToast(currentLang === 'id' ? "Subjek pesan wajib diisi." : "Message subject is required.", "error");
+                document.getElementById('contactSubject').focus();
+                return;
+            }
             
             // Validasi apakah pengguna masih menggunakan Access Key placeholder
             const accessKeyInput = form.querySelector('input[name="access_key"]');
