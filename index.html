@@ -889,6 +889,13 @@
                     <span class="lang-id">SISTEM ONLINE & NORMAL</span><span class="lang-en hidden">SYSTEM ONLINE & NORMAL</span>
                 </span>
             </div>
+            <div class="flex items-center space-x-1.5 border-l border-slate-300 dark:border-slate-700 pl-4">
+                <i data-lucide="eye" class="h-3 w-3"></i>
+                <span class="font-tech text-[10px]">
+                    <span class="lang-id">KUNJUNGAN:</span><span class="lang-en hidden">VISITS:</span>
+                    <span id="visitorCount">...</span>
+                </span>
+            </div>
         </div>
     </footer>
 
@@ -925,6 +932,25 @@
 
         // Memulai Instansiasi Lucide Icons
         lucide.createIcons();
+
+        // Penghitung Total Kunjungan (CountAPI - gratis, tanpa perlu daftar akun)
+        // GANTI nilai key di bawah ini dengan string unik (mis. tambahkan nama domain kamu)
+        // agar tidak bentrok dengan counter milik orang lain, karena key ini bersifat publik.
+        (function() {
+            const COUNTER_KEY = 'ilhamsyah07-portfolio-x7k29';
+            fetch(`https://countapi.mileshilliard.com/api/v1/hit/${COUNTER_KEY}`)
+                .then(res => res.json())
+                .then(data => {
+                    const el = document.getElementById('visitorCount');
+                    if (el && data && data.value !== undefined) {
+                        el.innerText = Number(data.value).toLocaleString('id-ID');
+                    }
+                })
+                .catch(() => {
+                    const el = document.getElementById('visitorCount');
+                    if (el) el.innerText = '-';
+                });
+        })();
 
         // Navigasi ke halaman detail project
         function goToProject(slug) {
